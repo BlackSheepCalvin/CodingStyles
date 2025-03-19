@@ -24,8 +24,12 @@ If by any chance... the "Simple" variation wins... to which I admit I am biased 
 That does not mean I learned nothing from TDD, functional, reactive, design patterns, SOLID, etc. It means I LEARNED them, AND therefore i know when and how to use them.
 
 ### Plan of things to do
-#### After every finished variation
-The variation should be tested by change request ideas like:
+#### Create the variations for the first version (V1)
+#### When every variation of a version is done:
+
+Commit to git repo.
+
+All variations should be tested by change request ideas like:
 * could you change this or that text?
 * could you change this or that behavior?
 * what if we want to introduce something else?
@@ -33,18 +37,18 @@ The variation should be tested by change request ideas like:
 * what if we want to write something out differently?
 * what if we want to log something? Kindof like analytics?
 
-#### Then write the next Variation
-#### When every variation is done:
-Select the ones that are promising, or claim to be better for bigger projects, and then:
-#### Do the next version for every selected variation.
-And see how they feel like to work with!
+Initially variations can differ from eachother a little, but during this testing phase, all variations should be changed so the write exactly the same messages and behave the same way. 
+(But to keep their own distinct styles, they dont have to use the same text sources!)
+
+Eliminate the ones that are too painful to work with. Exceptions can be made for variations that claim to scale better for bigger projects.
+
+#### Then: Repeat these steps for the next Version (V2, V3, etc)!
 
 ## Rules: 
 * Always try to make the best out of every variation! If something is obviously stupid, dont do it! 
-* Use clean code everywhere, simplify everywhere, use (or break) single resp if needed, etc! - except of corse if a variation is about blindly following something
-* Use unit tests when you feel you need to use them - except of corse test focused variations
-* Dont think ahead of iterations! You cant prepare the code for future requirements, so in iteration 1(V1) you only consider V1 requirements. And in V2 only V1 and V2 reqs.
-* As a consequence of the above, also don't make up future requirements just because you are writing a code that would work great for those requirements.
+* Use clean code everywhere, simplify everywhere, use (or break) SOLID if needed, etc! - except of corse if that would break the essence of the coding style (Don't skip unit tests if you're doing TDD)
+* Don't think ahead of versions! You can't prepare the code for future requirements, so in iteration 1(V1) you only consider V1 requirements. And in V2 only V1 and V2 requirements, etc.
+* As an extension of the above, also don't make up future requirements just because you are writing a code that would work great for those requirements. (For example make up an unlikely requirement to replace part of the code, just because you just wrote something that would nicely allow that)
 
 ## The test problem:
 #### First iteration (V1)
@@ -97,7 +101,7 @@ BUT! maybe i can do a little reactive in the best practice clean architecture!
 
 * ? maybe ECS? - meh... performance is not really an issue with this problem and it would be too forced + need to research whats the current best practice, lets not waste time on this.
 
-## Second iteration / copy paste all variations and add V2? 
+## Second iteration / copy paste all variations and implement V2 requirements(?)
 **(Maybe dont include variations that are obviously already bad)**
 
 Extra requirements:

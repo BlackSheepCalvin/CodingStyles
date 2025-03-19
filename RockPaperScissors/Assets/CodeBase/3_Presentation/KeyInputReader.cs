@@ -6,7 +6,8 @@ using UnityEngine;
 public class KeyInputReader : MonoBehaviour
 {
     private KeyInputUser inputUser;
-    private bool isPaused; // Hint: isPaused is a better name than isActive, because isActive would make you use a bunch of negations in the code
+    private bool isPaused; 
+    // Hint: isPaused is a better name than isActive, because isActive would make you use a bunch of negations in the code
     // like: isActive = inputUser != null , if (!isActive) { return; }
 
     public KeyInputUser InputUser {

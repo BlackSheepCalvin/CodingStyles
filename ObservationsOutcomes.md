@@ -1,6 +1,14 @@
 # Observations / Outcomes
 
 ## Observations:
+
+### Simple:
+### V1:
+
+\- The first bigger negative for the Simple solution was that after some refactoring that i did for TDD in the Core module, i wanted to see if everything works well still... but running the tests was not enough anymore! So just for the simple solution, i had to run and manually smoke test the game to make sure it still works
+
+\+ Obviously it was very easy and quick to work with this
+
 ### TDD:
 ### V1:
 \- TDD was obviously tedious to start, and kindof numbed my brain with the repeated test writings when it came to actually having to come up with an idea on how to implement the game. 
@@ -22,16 +30,9 @@
 
 \+ Ok to be fair, i will mention this, maybe its duplicate but... after i finished writing all tests for V1, and they were all green, i tested the game manually for the second time throughout the whole development, and it worked perfectly!
 
-\- My brain feels like shit after i finished this though...
+\- My brain feels like sh*t after i finished this though...
 
-### Simple:
-### V1:
-
-\- The first bigger negative for the Simple solution was that after some refactoring that i did for TDD in the Core module, i wanted to see if everything works well still... but running the tests was not enough anymore! So just for the simple solution, i had to run and manually smoke test the game to make sure it still works
-
-\+ Obviously it was very easy and quick to work with this
-
-### TDD + Simple:
+### Notes regarding TDD and Simple:
 
 \- I did introduce a bug with the Simple solution because i broke liskov substitution principle for enums... i added an invalid case to the Signs enum. But now that i think of it... i am not sure TDD would have prevented this bug!
 
@@ -57,7 +58,7 @@
 It was literally just: 
 * creating a new interface
 * making JSONReader confirm to that interface
-* rename the method signatures, types, and names (because i changed all these for the interface)
+* rename the method signatures, types, and names (because i changed all these for the interface to be more generic and customizable)
 * moving the JSONReader from Core to Infrastructure
 * Then it worked perfectly for the first time!
 
@@ -79,18 +80,19 @@ It was literally just:
 
 \+ i dont measure time but i finished this quickly in one night, after work+playing eve online, next morning i wrote unit tests before i went to work. (And played eve :D)
 
-### Clean Architecture:
+### Clean Architecture (/following a specific architectural design pattern):
 
-\- Immediately i felt like i have to create a bunch of assemblies, classes and interfaces, that make no sense at all, and i couldnt imagine a scenario where it'd be useful. 
+\- Immediately i felt like i have to create a bunch of assemblies, classes and interfaces, that make no sense at all, and i couldn't imagine a scenario where they'd be useful. 
 Luckily i had this rule at the beginning that i wont do stupid things, so i did not start manifacturing a bunch of interfaces and pointless classes. But an inexperienced developer may do. 
-And i've seen this on countless projects.
+And i've seen this happen on multiple projects.
 
-\* Weeelll this is interesting. I gave some more thought of this architecture, and it turns out i can't create the clean architecture version because i already had a clean architecture, kindof. 
-* The initializer and the monobehavior classes that lets you choose between the different variations is basically the presentation layer. 
+\* Weeelll this is interesting. I gave some more thought of this architecture, and it turns out i can't create the clean architecture version because i already had a clean architecture in place, almost. 
+* The initializer and the monobehavior classes that lets you choose between the different variations are basically the presentation layer. 
 * The different variations are the usecases
 * And I already had a core for the common entities, dependency interfaces, and other common stuff
 
-\* The only thing that clean added to my project is that I moved the Dependencies (or "infrastructure") to the outside. Like the Random generator, and the Jsonreader. 
+\* The only thing that clean added to my project is that I moved the Dependencies (or "infrastructure") outside. Like the Random generator, and the Jsonreader. 
+(The IPrinter already had an interface that i created for the Simple Variation, because it made sense immediately...)
 But i am not sure that i'd ever replace these, or that they would be suuper hard to replace. I imagine replacing one of these on a reaaaly big project would take like... a full day.
 Is it really worth worrying about, and maintaining/enforcing something that would take a day to replace?
 On different projects maybe... but on my project i cant imagine thinking: oh, lets replace system.random with unityengine.random, its sooo much better!
@@ -105,7 +107,7 @@ Unfortunately i cannot start a new variation with a fully clean brain, also sinc
 
 Anyway, here is the order in which i implemented these variations:
 
-1 Hello world
+1 Hello world (Just to test the initialization, and unit test setup)
 
 2 Simple one
 
@@ -115,15 +117,27 @@ Anyway, here is the order in which i implemented these variations:
 
 5 Functional
 
-6 Clean arhictecture (but this is basically just a restructuring of the project + discovering that I almost did a perfect clean architecture without even realizing it)
+6 Clean architecture (but this is basically just a restructuring of the project + discovering that I almost did a perfect clean architecture without even realizing it)
+
+------------------------------
+Future plan:
 
 V2:
 
-Data driven
+1 Functional
 
-TDD
+2 Data driven Programming
 
-Simple one
+3 TDD
 
+4 Simple one
 
+V3 (not sure yet):
 
+1 Simple one
+
+2 Data Driven
+
+3 Functional
+
+4 TDD
