@@ -1,0 +1,22 @@
+{
+    "rulesDescription": "So this is a {0} game! \nThe rules are: {1}\nFirst to score {2} wins the game!",
+    "signs": ["rock", "paper", "scissors"],
+    "rules": [
+        {
+            "winner": "rock",
+            "action": "crushes",
+            "loser": "scissors"
+        },
+        {
+            "winner": "scissors",
+            "action": "cuts",
+            "loser": "paper"
+        },
+        {
+            "winner": "paper",
+            "action": "covers",
+            "loser": "rock"
+        }
+    ],
+    "matchLength": 5
+}
