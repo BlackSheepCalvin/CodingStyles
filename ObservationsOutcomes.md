@@ -9,14 +9,19 @@ Here I document everything every time i am annoyed or impressed. I do this immed
 ## Observations:
 
 ### Simple:
-### V1:
+#### V1:
 
 \- The first bigger negative for the Simple solution was that after some refactoring that i did for TDD in the Core module, i wanted to see if everything works well still... but running the tests was not enough anymore! So just for the simple solution, i had to run and manually smoke test the game to make sure it still works
 
 \+ Obviously it was very easy and quick to work with this
 
-### TDD:
-### V1:
+#### V1 normalization:
+
+\+ Although this variation was never planned to be tested, when i created the implementation independent tests for TDDBetter, I could actually run those exact tests on the Simple variation...  
+What is really interesting to me, is that i thought my code was not testable. Because my classes had dependencies on other classes directly, and not on interfaces. But it was, in fact, testable...
+
+### TDD done wrong. Exactly how most big companies (that i've worked for) enforce it:
+#### V1:
 \- TDD was obviously tedious to start, and kindof numbed my brain with the repeated test writings when it came to actually having to come up with an idea on how to implement the game. 
 (In real life on longer projects this is obviously wouldnt be a big issue because you get used to writing tests)
 
@@ -37,6 +42,14 @@ Here I document everything every time i am annoyed or impressed. I do this immed
 \+ Ok to be fair, i will mention this, maybe its duplicate but... after i finished writing all tests for V1, and they were all green, i tested the game manually for the second time throughout the whole development, and it worked perfectly!
 
 \- My brain feels like sh*t after i finished this though...
+
+#### V1 normalization:
+
+\- Slightly annoying but when i moved the string constants to core from the individual Variations, only TDD and Simple variants needed adjustment in code...  
+But only for TDD, it also needed adjustments in the unit tests.
+
+\- ... aand that wasnt the only thing that got broken. An other test also got broken, because rock crushes scissors, not smashes!! Soo important.
+i'm not giving an other minus but i had to re-run tests one more time: this time because of an exclamation mark in the string - that i did not notice before!
 
 ### Notes regarding TDD and Simple:
 
@@ -122,6 +135,12 @@ If the tests are not depending on internal implementation, this could be done, r
 \- Still annoying to rewrite tests as I change requirements.
 
 \+ Honestly in the end things got a bit complicated and confusing, but when my tests were finally green, I tested manually, and it was perfect.
+
+#### V1 normalization:
+
+\+ This is super interesting to me. The same tests, that i wrote for TDDBetter variation... turns out i can reuse them for all the other implementations! Without ever planning for this.
+
+\+ I can now update the tests for the normalization, and use tests written for this one variation to verify all other variations, if they work the way they are supposed to, or not... very nice.
 
 ## Order of implementation:
 Unfortunately i cannot start a new variation with a fully clean brain, also since i choose to do this in one project i can reuse code from time to time. But it is actually interesting to see how easy it is to reuse code from one solution to the other.

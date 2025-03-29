@@ -27,7 +27,6 @@ public class TDDGameRoundTests
         var i = 0;
         Assert.AreEqual("Player: rock", mockPrinter.printCallHistory[i++]);
         Assert.AreEqual("Computer: rock", mockPrinter.printCallHistory[i++]);
-        Assert.AreEqual("Tie!", mockPrinter.printCallHistory[i++]);
     }
 
     [Test]
@@ -40,8 +39,7 @@ public class TDDGameRoundTests
         var i = 0;
         Assert.AreEqual("Player: scissors", mockPrinter.printCallHistory[i++]);
         Assert.AreEqual("Computer: rock", mockPrinter.printCallHistory[i++]);
-        Assert.AreEqual("Rock smashes scissors!", mockPrinter.printCallHistory[i++]);
-        Assert.AreEqual("Computer wins!", mockPrinter.printCallHistory[i++]);
+        Assert.AreEqual("Rock crushes scissors", mockPrinter.printCallHistory[i++]);
     }
 
     [Test]
@@ -54,7 +52,6 @@ public class TDDGameRoundTests
         var i = 0;
         Assert.AreEqual("Player: scissors", mockPrinter.printCallHistory[i++]);
         Assert.AreEqual("Computer: scissors", mockPrinter.printCallHistory[i++]);
-        Assert.AreEqual("Tie!", mockPrinter.printCallHistory[i++]);
     }
 
     [Test]
@@ -67,6 +64,5 @@ public class TDDGameRoundTests
         Assert.AreEqual("Player: paper", mockPrinter.printCallHistory[i++]);
         Assert.AreEqual("Computer: rock", mockPrinter.printCallHistory[i++]);
         Assert.AreEqual("Paper covers rock", mockPrinter.printCallHistory[i++]);
-        Assert.AreEqual("Player wins!", mockPrinter.printCallHistory[i++]);
     }
 }

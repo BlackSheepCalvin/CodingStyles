@@ -6,4 +6,9 @@ public class HelloWorld: Variation
     {
         printer.Print("Hello World");
     }
+
+    public override void DidPressKey(string key)
+    {
+        printer.Print("Noted.");
+    }
 }

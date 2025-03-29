@@ -1,6 +1,6 @@
 using static OutCome;
 
-public class TDDBetter : Variation, KeyInputUser
+public class TDDBetter : Variation
 {
     private TDDBetterMatch gameMatch;
 
@@ -18,7 +18,7 @@ public class TDDBetter : Variation, KeyInputUser
         gameMatch.AnnounceNextRound();
     }
 
-    public void DidPressKey(string key)
+    public override void DidPressKey(string key)
     {
         var sign = key.decodeSign();
         if (sign.HasValue)

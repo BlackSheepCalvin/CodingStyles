@@ -35,7 +35,7 @@ public static class FuncUtils
     }
 }
 
-public class Functional : Variation, KeyInputUser
+public class Functional : Variation
 {
     private readonly List<string> rulesToPrint = new() {
         "Welcome to Rock-Paper-Scissors! First to 5 wins.",
@@ -71,7 +71,7 @@ public class Functional : Variation, KeyInputUser
         rulesToPrint.ForEach(printer.Print); // Hint: a little functional... nice :D
     }
 
-    public void DidPressKey(string key)
+    public override void DidPressKey(string key)
     {
         if (!_signs.Contains(key))
         {

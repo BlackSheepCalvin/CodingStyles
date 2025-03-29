@@ -1,12 +1,14 @@
+using System;
 using System.Linq;
 using NUnit.Framework;
 using static RockPaperScissorsConsts;
 
+[TestFixture]
 public class TDDBetterTests
 {
     private MockPrinter mockPrinter;
     private MockRandom mockRandom;
-    private TDDBetter sut;
+    private Variation sut;
 
     [SetUp]
     public void SetUp()
@@ -14,11 +16,52 @@ public class TDDBetterTests
         mockPrinter = new MockPrinter();
         mockRandom = new MockRandom();
         ServiceProvider.Random = mockRandom;
-        sut = new TDDBetter(mockPrinter);
     }
 
     [Test]
-    public void StartAnnouncesRules()
+    public void TestDataDriven()
+    {
+        CheckVariationTests(printer => new DataDrivenProgramming(printer));
+    }
+
+    [Test]
+    public void TestFunctional()
+    {
+        CheckVariationTests(printer => new Functional(printer));
+    }
+
+    [Test]
+    public void TestSimplestOne()
+    {
+        CheckVariationTests(printer => new SimplestOne(printer));
+    }
+
+    [Test]
+    public void TestTDDBetter()
+    {
+        CheckVariationTests(printer => new TDDBetter(printer));
+    }
+
+    private void CheckVariationTests<T>(Func<IPrinter, T> factory) where T : Variation
+    {
+        Runtest(factory, StartAnnouncesRules);
+        Runtest(factory, PlayerPressesWrongKey);
+        Runtest(factory, PlayerPresses_LowerCaseR);
+        Runtest(factory, PlayerPresses_UpperCaseR);
+        Runtest(factory, TieRound);
+        Runtest(factory, PlayerWinsRound);
+        Runtest(factory, ComputerWinsRound);
+        Runtest(factory, PlayerWinsComplexMatch);
+        Runtest(factory, ComputerWinsMatch_ThenContinuePlaying);
+    }
+    private void Runtest<T>(Func<IPrinter, T> factory, Action testAction) where T : Variation
+    {
+        sut = factory(mockPrinter);
+        mockPrinter.printCallHistory.Clear();
+        testAction();
+    }
+
+    private void StartAnnouncesRules()
     {
         Assert.AreEqual(null, mockPrinter.printCallHistory.FirstOrDefault());
 
@@ -35,8 +78,7 @@ public class TDDBetterTests
         Assert.AreEqual("3...2..1..", mockPrinter.printCallHistory[i++]);
     }
 
-    [Test]
-    public void PlayerPressesWrongKey()
+    private void PlayerPressesWrongKey()
     {
         sut.Start();
         sut.DidPressKey("2");
@@ -44,8 +86,7 @@ public class TDDBetterTests
         Assert.AreEqual(7, mockPrinter.printCallHistory.Count);
     }
 
-    [Test]
-    public void PlayerPresses_LowerCaseR()
+    private void PlayerPresses_LowerCaseR()
     {
         sut.Start();
         sut.DidPressKey("r");
@@ -54,8 +95,7 @@ public class TDDBetterTests
         Assert.AreEqual("Player: rock", mockPrinter.printCallHistory[i++]);
     }
 
-    [Test]
-    public void PlayerPresses_UpperCaseR()
+    private void PlayerPresses_UpperCaseR()
     {
         sut.Start();
         sut.DidPressKey("R");
@@ -64,8 +104,7 @@ public class TDDBetterTests
         Assert.AreEqual("Player: rock", mockPrinter.printCallHistory[i++]);
     }
 
-    [Test]
-    public void TieRound()
+    private void TieRound()
     {
         sut.Start();
         mockRandom.output = 0;
@@ -80,8 +119,7 @@ public class TDDBetterTests
         Assert.AreEqual("3...2..1..", mockPrinter.printCallHistory[i++]);
     }
 
-    [Test]
-    public void PlayerWinsRound()
+    private void PlayerWinsRound()
     {
         sut.Start();
         mockRandom.output = 2;
@@ -96,8 +134,7 @@ public class TDDBetterTests
         Assert.AreEqual("3...2..1..", mockPrinter.printCallHistory[i++]);
     }
 
-    [Test]
-    public void ComputerWinsRound()
+    private void ComputerWinsRound()
     {
         sut.Start();
         mockRandom.output = 1;
@@ -112,8 +149,7 @@ public class TDDBetterTests
         Assert.AreEqual("3...2..1..", mockPrinter.printCallHistory[i++]);
     }
 
-    [Test]
-    public void PlayerWinsComplexMatch()
+    private void PlayerWinsComplexMatch()
     {
         sut.Start();
         mockRandom.output = 1;
@@ -180,8 +216,7 @@ public class TDDBetterTests
         Assert.AreEqual("3...2..1..", mockPrinter.printCallHistory[i++]);
     }
 
-    [Test]
-    public void ComputerWinsMatch_ThenContinuePlaying()
+    private void ComputerWinsMatch_ThenContinuePlaying()
     {
         sut.Start();
         mockRandom.output = 1;

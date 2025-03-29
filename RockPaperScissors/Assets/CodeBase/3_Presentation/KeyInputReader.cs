@@ -2,15 +2,16 @@ using UnityEngine;
 
 // Hint: Single responsibility principle (input reading is not part of Initializer)
 // Hint: possible to do observer pattern so multiple users could subscribe
-// Hint: making things as generic as possible: no mention of Variations here, just inputUsers that can be anything that confirms to KeyInputUser
+// Hint: [changed] making things as generic as possible: no mention of Variations here, just inputUsers that can be anything that confirms to KeyInputUser
+// this last one changed... I decided to remove KeyInputUser interface, because it make little sense to keep it separate from Variations.
 public class KeyInputReader : MonoBehaviour
 {
-    private KeyInputUser inputUser;
+    private Variation inputUser;
     private bool isPaused; 
     // Hint: isPaused is a better name than isActive, because isActive would make you use a bunch of negations in the code
     // like: isActive = inputUser != null , if (!isActive) { return; }
 
-    public KeyInputUser InputUser {
+    public Variation InputUser {
         get => inputUser;
         set {
             inputUser = value;

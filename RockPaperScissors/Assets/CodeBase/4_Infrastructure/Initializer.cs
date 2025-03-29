@@ -54,7 +54,7 @@ public class Initializer : MonoBehaviour
     private void UpdateVariation()
     {
         var variation = GetVariationFor(currentVariation);
-        inputReader.InputUser = variation as KeyInputUser; // variation as KeyInputUser can be null, if variation does not need keyInputs!
+        inputReader.InputUser = variation;
         variation?.Start();
     }
 

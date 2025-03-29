@@ -1,5 +1,5 @@
 using static OutCome;
-public class DataDrivenProgramming : Variation, KeyInputUser
+public class DataDrivenProgramming : Variation
 {
     IDataProvider dataProvider;
     KeyPressInterpreter keyPressInterpreter;
@@ -19,7 +19,7 @@ public class DataDrivenProgramming : Variation, KeyInputUser
         });
     }
 
-    public void DidPressKey(string key)
+    public override void DidPressKey(string key)
     {
         var sign = keyPressInterpreter.EvaluateInputKey(key);
         if (sign == "")

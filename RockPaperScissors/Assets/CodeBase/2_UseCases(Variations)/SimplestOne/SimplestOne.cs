@@ -1,9 +1,6 @@
-using static RockPaperScissorsConsts;
-using static Sign;
 using static OutCome;
-using System;
 
-public class SimplestOne: Variation, KeyInputUser
+public class SimplestOne: Variation
 {
     private GameRound gameRound;
     private FirstToNWinsCounter counter;
@@ -15,16 +12,15 @@ public class SimplestOne: Variation, KeyInputUser
     
     public override void Start()
     {
-        printer.Print("Hey these are the rules, You press key R for rock, P for paper, S for scissors. The computer also generates a sign, and then we determine the winner based on the rules!");
+        printer.Print("Welcome to rock paper scissors!");
         printer.Print("The rules are:");
-        printer.Print(RockWin);
-        printer.Print(PaperWin);
-        printer.Print(ScissorsWin);
-        printer.Print($"Whoever first gets {counter.TargetScore} wins, wins the match!");
+        printer.Print("Rock smashes scissors");
+        printer.Print("Scissors cuts paper");
+        printer.Print("Paper covers rock");
         NextGameStarts();
     }
 
-    public void DidPressKey(string key)
+    public override void DidPressKey(string key)
     {
         var sign = key.decodeSign();
         if (sign.HasValue)

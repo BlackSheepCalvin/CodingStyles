@@ -1,6 +1,6 @@
 using static OutCome;
 
-public class TDD : Variation, KeyInputUser // Hint: TDD = Test Driven Development
+public class TDD : Variation // Hint: TDD = Test Driven Development
 {
     private ITDDGameMatch gameMatch;
 
@@ -24,7 +24,7 @@ public class TDD : Variation, KeyInputUser // Hint: TDD = Test Driven Developmen
         gameMatch.AnnounceNextRound();
     }
 
-    public void DidPressKey(string key)
+    public override void DidPressKey(string key)
     {
         var sign = key.decodeSign();
         if (sign.HasValue)

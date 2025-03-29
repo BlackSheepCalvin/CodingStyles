@@ -86,12 +86,10 @@ public class TDDGameRound: ITDDGameRound
     }
     void DidPlayerWin()
     {
-        printer.Print(PlayerWin);
         LastOutCome = playerWin;
     }
     void DidComputerWin()
     {
-        printer.Print(ComputerWin);
         LastOutCome = computerWin;
     }
 }

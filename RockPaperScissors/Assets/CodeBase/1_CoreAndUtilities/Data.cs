@@ -20,3 +20,13 @@ public enum OutCome
     tie,
     inProgress
 }
+
+public struct RockPaperScissorsConsts
+{
+    public static string RockWin = "Rock crushes scissors";
+    public static string PaperWin = "Paper covers rock";
+    public static string ScissorsWin = "Scissors cut paper";
+    public static string Tie = "Tie";
+    public static string ComputerWinsMatch = "Computer wins the match! Better luck next time!";
+    public static string PlayerWinsMatch = "You win the match! Congratulations!";
+}

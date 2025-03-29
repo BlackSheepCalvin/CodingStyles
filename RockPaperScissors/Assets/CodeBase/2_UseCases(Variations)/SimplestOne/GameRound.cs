@@ -14,7 +14,7 @@ public class GameRound
     public void AnnounceNextRound()
     {
         printer.Print("");
-        printer.Print("3... 2... 1...");
+        printer.Print("3...2..1..");
     }
 
     public void EvaluatePlayerSign(Sign playerSign)
@@ -26,7 +26,6 @@ public class GameRound
         {
             if (computerSign == rock)
             {
-                printer.Print(Same);
                 DidTie();
             }
             else if (computerSign == paper)
@@ -49,7 +48,6 @@ public class GameRound
             }
             else if (computerSign == paper)
             {
-                printer.Print(Same);
                 DidTie();
             }
             else if (computerSign == scissors)
@@ -72,7 +70,6 @@ public class GameRound
             }
             else if (computerSign == scissors)
             {
-                printer.Print(Same);
                 DidTie();
             }
         }
@@ -85,12 +82,10 @@ public class GameRound
     }
     void DidPlayerWin()
     {
-        printer.Print(PlayerWin);
         LastOutCome = playerWin;
     }
     void DidComputerWin()
     {
-        printer.Print(ComputerWin);
         LastOutCome = computerWin;
     }
 }

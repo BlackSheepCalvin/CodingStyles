@@ -12,9 +12,6 @@ public abstract class Variation
     }
 
     public abstract void Start();
-}
 
-public interface KeyInputUser
-{
-    public void DidPressKey(string key);
+    public abstract void DidPressKey(string key);
 }

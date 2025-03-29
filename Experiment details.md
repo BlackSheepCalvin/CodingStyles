@@ -74,8 +74,8 @@ But! First the game has to announce the rules!
 
 #### First iteration requirement normalization:
 
-So until this point, every variation could do the MVP any way they wanted. 
-But at this step, they all have to behave exactly the same way. 
+So until this point, every variation could do the MVP any way they wanted. (And in fact I made them all a bit different from eachother on purpose...)  
+But at this step, they all have to behave exactly the same way.  
 I'll try to always normalize in a way that every version has to change something a little. It should be easy... right?!
 
 First of all, switching between variations should be easy!!
