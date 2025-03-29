@@ -18,18 +18,18 @@ using static OutCome;
 * score: 2 - 5
 * Computer wins!*/
 
-public class TestDrivenDevelopmentTests
+public class TDDTests
 {
     private MockPrinter mockPrinter;
     private MockTDDGameMatch mockGameMatch;
-    private TestDrivenDevelopment sut;
+    private TDD sut;
 
     [SetUp]
     public void SetUp()
     {
         mockPrinter = new MockPrinter();
         mockGameMatch = new MockTDDGameMatch();
-        sut = new TestDrivenDevelopment(mockPrinter, mockGameMatch);
+        sut = new TDD(mockPrinter, mockGameMatch);
     }
 
     [Test]

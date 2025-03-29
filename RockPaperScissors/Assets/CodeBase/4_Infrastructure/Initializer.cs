@@ -18,7 +18,8 @@ public enum VariationType
 { // every type here should have a class equivavent in the project, with the exact same name!
     HelloWorld,
     SimplestOne,
-    TestDrivenDevelopment,
+    TDD,
+    TDDBetter,
     DataDrivenProgramming,
     Functional
 }
@@ -28,14 +29,30 @@ public class Initializer : MonoBehaviour
 {
     // the implementation variation that will be initialized at start
     public VariationType currentVariation = VariationType.HelloWorld;
+    private VariationType _previousVariation;
 
     private KeyInputReader inputReader;
 
     void Start()
     {
+        _previousVariation = currentVariation;
         inputReader = GetComponent<KeyInputReader>();
         ServiceProvider.DataProvider = GetComponent<JsonReader>();
         ServiceProvider.Random = new SystemRandom();
+        UpdateVariation();
+    }
+
+    private void Update()
+    {
+        if (_previousVariation != currentVariation)
+        {
+            _previousVariation = currentVariation;
+            UpdateVariation();
+        }
+    }
+
+    private void UpdateVariation()
+    {
         var variation = GetVariationFor(currentVariation);
         inputReader.InputUser = variation as KeyInputUser; // variation as KeyInputUser can be null, if variation does not need keyInputs!
         variation?.Start();

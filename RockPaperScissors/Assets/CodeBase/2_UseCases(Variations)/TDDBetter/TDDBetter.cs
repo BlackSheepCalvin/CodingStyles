@@ -1,17 +1,12 @@
 using static OutCome;
 
-public class TestDrivenDevelopment : Variation, KeyInputUser
+public class TDDBetter : Variation, KeyInputUser
 {
-    private ITDDGameMatch gameMatch;
+    private TDDBetterMatch gameMatch;
 
-    public TestDrivenDevelopment(IPrinter printer, ITDDGameMatch gameMatch) : base(printer)
-    { // Used by Unit tests
-        this.gameMatch = gameMatch;
-    }
-
-    public TestDrivenDevelopment(IPrinter printer) : base(printer)
-    { // Used by Initializer (Production code)
-        gameMatch = new TDDGameMatch(printer, new TDDGameRound(printer), 5);
+    public TDDBetter(IPrinter printer) : base(printer)
+    {
+        gameMatch = new TDDBetterMatch(printer);
     }
     public override void Start()
     {
@@ -20,7 +15,6 @@ public class TestDrivenDevelopment : Variation, KeyInputUser
         printer.Print("Rock smashes scissors");
         printer.Print("Scissors cuts paper");
         printer.Print("Paper covers rock");
-        printer.Print("");
         gameMatch.AnnounceNextRound();
     }
 
@@ -29,21 +23,20 @@ public class TestDrivenDevelopment : Variation, KeyInputUser
         var sign = key.decodeSign();
         if (sign.HasValue)
         {
-            gameMatch.EvaluatePlayerSign(sign.Value);
-            EvaluateGameState();
+            EvaluateGameState(gameMatch.EvaluatePlayerSign(sign.Value));
         }
     }
 
-    private void EvaluateGameState()
+    private void EvaluateGameState(OutCome outCome)
     {
-        switch (gameMatch.OutCome)
+        switch (outCome)
         {
             case playerWin:
                 printer.Print("You won the match! Congrats!");
                 gameMatch.AnnounceNextRound();
                 break;
             case computerWin:
-                printer.Print("Better luck next time! Computer won the match!");
+                printer.Print("Computer wins! Better luck next time!");
                 gameMatch.AnnounceNextRound();
                 break;
             case tie:
@@ -51,7 +44,6 @@ public class TestDrivenDevelopment : Variation, KeyInputUser
                 gameMatch.AnnounceNextRound();
                 break;
             case inProgress:
-                printer.Print($"score: {gameMatch.PlayerScore} - {gameMatch.ComputerScore}");
                 gameMatch.AnnounceNextRound();
                 break;
         }

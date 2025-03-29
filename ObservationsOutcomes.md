@@ -1,5 +1,11 @@
 # Observations / Outcomes
 
+Here I document everything every time i am annoyed or impressed. I do this immediately, as i code, and i don't write down anything else. So none of these thuoghts are fabricated, or past experiences, etc...
+
+\+ means I am impressed  
+\- means I am annoyed  
+\* means I am not sure or just had a thought
+
 ## Observations:
 
 ### Simple:
@@ -48,11 +54,15 @@
 
 \+ Rule generation is by default reusing everything, no repetitions
 
-\+ For the first time i recognized i need to create a keyPress interpreter that would work with signs that begins with different letters (scissors, spock - for example) - I realized this because rock paper scissors is now dynamic, so i was thinking of how to hanlde key presses for any input data
+\+ For the first time i recognized i need to create a keyPress interpreter that would work with signs that begins with different letters (scissors, spock - for example)  
+I realized this because rock paper scissors is now dynamic, so i was thinking of how to handle key presses for any input data
 
 \+ I did a TDD-like approach only for the interpreter which is actually complicated to do, so TDD actually helped me, rather than slow me down. But i decided that this interpreter goes straight to Core.
 
-\- There was a relatively hard to fix bug with this line (Rule is a stuct so its default is not null...): `Rule? playerWinsRule = gameData.rules.FirstOrDefault(rule => rule.winner == playerSign && rule.loser == computerSign);` (This complexity was not needed yet, but it will be necessary for every versions later!)
+\- There was a relatively hard to fix bug with this line (Rule is a stuct so its default is not null...):  
+`Rule? playerWinsRule = gameData.rules.FirstOrDefault(rule => rule.winner == playerSign && rule.loser == computerSign);`  
+This complexity was not needed yet, but it will be necessary for every versions later!  
+Note that I immediately found the bug, and as i said, it would have happened in any other versions too.
 
 \+ When i did Clean Architecture, I had to replace JSONReader with an interface, but it was super easy to do! (I guess this will be needed for TDD as well)
 It was literally just: 
@@ -101,6 +111,17 @@ Or: hmm, we should get game data that we had in a json... from a website! Or fro
 \* I was thinking to add this requirement for V2 or V3 to change the jsonreader or random generator, but the rules were that i shouldnt know about future change requests... 
 And i did not think about these requests because they make no sense...
 
+### TDDBetter (write tests for modules, not for classes!)
+
+\- Tests are still booring
+
+\+ There is a hope that maybe, I'm thinking I could reuse the tests I write here, for my other Variations?  
+If the tests are not depending on internal implementation, this could be done, right? It would actually be impressive.
+(Idea: Test the Variation interface itself, and inject the concrete implementations into the test!)
+
+\- Still annoying to rewrite tests as I change requirements.
+
+\+ Honestly in the end things got a bit complicated and confusing, but when my tests were finally green, I tested manually, and it was perfect.
 
 ## Order of implementation:
 Unfortunately i cannot start a new variation with a fully clean brain, also since i choose to do this in one project i can reuse code from time to time. But it is actually interesting to see how easy it is to reuse code from one solution to the other.
@@ -119,12 +140,16 @@ Anyway, here is the order in which i implemented these variations:
 
 6 Clean architecture (but this is basically just a restructuring of the project + discovering that I almost did a perfect clean architecture without even realizing it)
 
+7 TDDBetter (TDD but writing tests for modules, not classes...)
+
 ------------------------------
 Future plan:
 
 V2:
 
 1 Functional
+
++1 MVVM or MVP?! + No magic numbers?! - in the presentation layer!!! for the different UIs?
 
 2 Data driven Programming
 

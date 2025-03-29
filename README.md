@@ -1,10 +1,18 @@
 # Purpose of this project.
 
-This is an experiment on different coding styles (I call them variations). The same developer (me) will attempt to solve the same problem in multiple ways and draw meaningful conclusions from the process.
+This is an experiment on different coding styles (I call them variations). The same developer (me) will solve the same problem in multiple ways and try to draw meaningful conclusions from the process.
 
 Of course, this is not an ideal scientific experiment, as I serve as both the conductor and the sole participant, without a proper control group. Additionally, I have my own biases and varying skill levels, which may influence the results.
 
 You are welcome to follow along, examine the code at different stages, and form your own judgments.
+
+I am experimenting with:
+* a simplistic style as "control", 
+* TDD done wrong, 
+* TDD done right, 
+* functional style (with little functional experience),
+* data driven programming, 
+* clean architecture (with little clean architecture experience)
 
 ## The base problem
 

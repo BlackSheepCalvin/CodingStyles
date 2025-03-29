@@ -1,0 +1,16 @@
+{
+    "name": "TDDBetter",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4b71eb9e8bd85e746b62b43f463b9305"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
