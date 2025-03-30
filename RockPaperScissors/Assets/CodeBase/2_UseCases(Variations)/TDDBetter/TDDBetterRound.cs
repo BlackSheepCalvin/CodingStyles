@@ -18,23 +18,22 @@ class TDDBetterRound: PrinterUser
     internal OutCome EvaluatePlayerSign(Sign playerSign)
     {
         var computerSign = random.RandomSign();
-        Print($"Player: {playerSign}");
-        Print($"Computer: {computerSign}");
+        var prefix = $"You showed {playerSign}! Computer showed {computerSign}! -";
         if (playerSign == rock)
         {
             if (computerSign == rock)
             {
-                Print(Tie);
+                Print($"{prefix} {Tie}!");
                 return tie;
             }
             else if (computerSign == paper)
             {
-                Print(PaperWin);
+                Print($"{prefix} {PaperWin}!");
                 return computerWin;
             }
             else if (computerSign == scissors)
             {
-                Print(RockWin);
+                Print($"{prefix} {RockWin}!");
                 return playerWin;
             }
         }
@@ -42,17 +41,17 @@ class TDDBetterRound: PrinterUser
         {
             if (computerSign == rock)
             {
-                Print(PaperWin);
+                Print($"{prefix} {PaperWin}!");
                 return playerWin;
             }
             else if (computerSign == paper)
             {
-                Print(Tie);
+                Print($"{prefix} {Tie}!");
                 return tie;
             }
             else if (computerSign == scissors)
             {
-                Print(ScissorsWin);
+                Print($"{prefix} {ScissorsWin}!");
                 return computerWin;
             }
         }
@@ -60,17 +59,17 @@ class TDDBetterRound: PrinterUser
         {
             if (computerSign == rock)
             {
-                Print(RockWin);
+                Print($"{prefix} {RockWin}!");
                 return computerWin;
             }
             else if (computerSign == paper)
             {
-                Print(ScissorsWin);
+                Print($"{prefix} {ScissorsWin}!");
                 return playerWin;
             }
             else if (computerSign == scissors)
             {
-                Print(Tie);
+                Print($"{prefix} {Tie}!");
                 return tie;
             }
         }

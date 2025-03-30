@@ -28,6 +28,8 @@ TDD, TDDBetter and Data driven was the hardest to refactor for the new idea, but
 
 \+ I've decided to try the event(/observer) variation. Guess which variation I choose as a starting point for the event one? - The Simple. Y'know... 'cause its **simple**.
 
+\* I'm not even gonna add extra points now so i don't do favoritism but I've copied code from Simple one to TDDBetter when normalizing TDDBetter.
+
 ### TDD done wrong. Exactly how most big companies (that i've worked for) enforce it:
 #### V1:
 \- TDD was obviously tedious to start, and kindof numbed my brain with the repeated test writings when it came to actually having to come up with an idea on how to implement the game. 
@@ -103,7 +105,8 @@ It was literally just:
 
 \+ Super compact end result
 
-\+ Nice that a lot of important stuff can be read one after the other. One function tell you who wins, function below that tells you what to do when someone wins, function below that tells you if game ended or not.
+\+ High cohesion... for now. Nice that a lot of important stuff can be read one after the other.  
+One function tell you who wins, function below that tells you what to do when someone wins, function below that tells you if game ended or not.
 
 \+ Easy to test, and i used LLM to write tests (the LLM needed a little help but then it was great!)
 
@@ -114,6 +117,26 @@ It was literally just:
 \* to be honest V1 does the bare minimum for now, since the LLM went the easiest routes. But! Its good because we'll see how it scales!
 
 \+ i dont measure time but i finished this quickly in one night, after work+playing eve online, next morning i wrote unit tests before i went to work. (And played eve :D)
+
+#### V1 normalization:
+
+\- Yes functional was easy to test, but it was easy to test the FUNCTIONS. I tested the wrong thing, and now i am deleting those tests, they are useless and it would be a burden to update them.  
+In other words: if you are doing testing right, functional may not be easier to test than any other style. Because your tests should be independent of implementation!
+
+\- Allright... it started great, then it was harder, then it was a little fun, but now... i'd just say this is just very annoying :D I have to keep changing my functions, their signatures,  
+and i have to keep coming up with hacks about how to change this thing to work the way i want.  
+All while keeping all the requirements in my head, and also every detail of how this beautiful mess works. This was much easier with every other style.
+
+\- Note that i dont have to write tests - OMG btw the tests... if rewriting the signatures of all these functions is annoying, imagine how annoying would be to rewrite all the tests too...  
+The list for the previous point started to grow too long, so i split this into two.
+
+\- Everything got more tricky, and things are not in one place anymore. So cohesion suffered.  
+Probably when the first time i wrote the code it did not have strict requirements so i went for the most convenient solutions.
+
+\- I've encountered a line with a comment "// bruh...". So probably it already looked a bit tricky when i wrote that line.  
+I think I don't have to tell you that i have no idea what is going on in that line :D
+
+\+ Still a bit fun, in a puzzle-like way. I am not sure this is a positive, but i didnt want to be so negative :D
 
 ### Clean Architecture (/following a specific architectural design pattern):
 
@@ -159,6 +182,9 @@ If the tests are not depending on internal implementation, this could be done, r
 \+ I can now update the tests for the normalization, and use tests written for this one variation to verify all other variations, if they work the way they are supposed to, or not... very nice.
 
 \+ This actually deserves an extra point (I think its quite obvious anyways, that this "experiment" is highly subjective). TDD done wrong -> fragile tests. TDD done right -> suddenly everything is tested.
+
+\+ TDDBetter indeed proves very useful for quicky verifying the normalization of all other variations. Also it makes all the tests that i wrote for those, obsolete...  
+more code is ALWAYS a code smell. This applies to unit tests as well. And less code means you're on the right track!
 
 ### Observer pattern / Events / Binding / Reactive etc...
 

@@ -1,8 +1,11 @@
 using static OutCome;
+using static RockPaperScissorsConsts;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class TDDBetter : Variation
 {
     private TDDBetterMatch gameMatch;
+    private int badKeyCounter;
 
     public TDDBetter(IPrinter printer) : base(printer)
     {
@@ -10,12 +13,10 @@ public class TDDBetter : Variation
     }
     public override void Start()
     {
-        Print("Welcome to rock paper scissors!");
-        Print("The rules are:");
-        Print("Rock smashes scissors");
-        Print("Scissors cuts paper");
-        Print("Paper covers rock");
-        gameMatch.AnnounceNextRound();
+        Rules.ForEach(x =>
+        {
+            Print(x);
+        });
     }
 
     public override void DidPressKey(string key)
@@ -23,7 +24,16 @@ public class TDDBetter : Variation
         var sign = key.decodeSign();
         if (sign.HasValue)
         {
+            badKeyCounter = 0;
             EvaluateGameState(gameMatch.EvaluatePlayerSign(sign.Value));
+        }
+        else
+        {
+            badKeyCounter++;
+            if (badKeyCounter == 3)
+            {
+                Print(OnInvalidKey);
+            }
         }
     }
 
@@ -32,19 +42,22 @@ public class TDDBetter : Variation
         switch (outCome)
         {
             case playerWin:
-                Print("You won the match! Congrats!");
-                gameMatch.AnnounceNextRound();
+                Print(PlayerWinsMatch);
+                Print(NextMatchAnnouncement);
+                Print(NextRoundAnnouncement);
                 break;
             case computerWin:
-                Print("Computer wins! Better luck next time!");
-                gameMatch.AnnounceNextRound();
+                Print(ComputerWinsMatch);
+                Print(NextMatchAnnouncement);
+                Print(NextRoundAnnouncement);
                 break;
             case tie:
                 Print($"Aaand its a tie... somehow!");
-                gameMatch.AnnounceNextRound();
+                Print(NextMatchAnnouncement);
+                Print(NextRoundAnnouncement); ;
                 break;
             case inProgress:
-                gameMatch.AnnounceNextRound();
+                Print(NextRoundAnnouncement);
                 break;
         }
     }

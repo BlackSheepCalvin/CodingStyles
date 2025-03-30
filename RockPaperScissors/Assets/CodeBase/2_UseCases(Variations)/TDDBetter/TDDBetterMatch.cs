@@ -1,4 +1,5 @@
 using static OutCome;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 class TDDBetterMatch: PrinterUser
 {
@@ -19,14 +20,14 @@ class TDDBetterMatch: PrinterUser
         {
             case playerWin:
                 ++PlayerScore; // Hint: Readability: i want ++PlayerScore here, and not hidden into the next line...
-                Print($"Score: P: {PlayerScore}, C: {ComputerScore}"); // printer.Print($"Score: P: {++PlayerScore}, C: {ComputerScore}"); - this would be great if you wanted to confuse people reading your code :D
+                Print($"Computer: {ComputerScore}, Player: {PlayerScore}"); // Print($"Computer: {ComputerScore}, Player: {++PlayerScore}"); - this would be great if you wanted to confuse people reading your code :D
                 break;
             case computerWin:
                 ++ComputerScore;
-                Print($"Score: P: {PlayerScore}, C: {ComputerScore}");
+                Print($"Computer: {ComputerScore}, Player: {PlayerScore}");
                 break;
             case tie:
-                Print($"Score: P: {PlayerScore}, C: {ComputerScore}");
+                Print($"Computer: {ComputerScore}, Player: {PlayerScore}");
                 break;
         }
 
@@ -46,11 +47,5 @@ class TDDBetterMatch: PrinterUser
         {
             return inProgress;
         }
-    }
-
-    public void AnnounceNextRound()
-    {
-        Print("");
-        Print("3...2..1..");
     }
 }

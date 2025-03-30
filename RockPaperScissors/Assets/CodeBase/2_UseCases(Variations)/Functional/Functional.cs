@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System;
+using static RockPaperScissorsConsts;
+using static PlasticPipe.PlasticProtocol.Messages.Serialization.ItemHandlerMessagesSerialization;
+using GluonGui.Dialog;
 
 public static class FuncUtils
 {
@@ -11,50 +14,55 @@ public static class FuncUtils
         return list[random.Next(list.Count)];
     }
 
-    public static (string result, Func<(int, int), (int, int)> scoreUpdate) GetRoundResult(string player, string computer, Dictionary<string, string> rules)
+    public static (string result, Func<(int, int), (int, int)> scoreUpdate) GetRoundResult(string player, string computer, Dictionary<string, string> rules, Dictionary<string, string> signToString)
     {
+        var prefix = $"You showed {signToString[player]}! Computer showed {signToString[computer]}! - ";
         if (player == computer)
-            return ("Tie!", score => score);
+            return ($"{prefix}{Tie}!", score => score);
 
-        if (rules[player] == computer)
-            return ("You win this round!", score => (score.Item1 + 1, score.Item2));
+        var ruleKey = $"{player}{computer}";
+        if (rules.ContainsKey(ruleKey))
+            return ($"{prefix}{rules[ruleKey]}!", score => (score.Item1 + 1, score.Item2)); // Hint: we are returning in the middle but looking at the whole func, i dont think this is too misleading...
+                                                                                    // obviously it is a check and return type of function.
 
-        return ("Computer wins this round!", score => (score.Item1, score.Item2 + 1));
+        ruleKey = $"{computer}{player}";
+        if (rules.ContainsKey(ruleKey))
+            return ($"{prefix}{rules[ruleKey]}!", score => (score.Item1, score.Item2 + 1));
+
+        return ($"{prefix}{Tie}!", score => score);
     }
 
-    public static List<string> GetRoundAnnouncements(string player, string computer, string result, (int player, int computer) currentScores)
+    public static List<string> GetRoundAnnouncements(string result, (int player, int computer) currentScores)
     {
-        return new() { $"Player: {player}, Computer: {computer}", $"{result} Score: {currentScores.player} - {currentScores.computer}" };
+        return new() { result, $"Computer: {currentScores.computer}, Player: {currentScores.player}" };
     }
 
     public static string CheckGameEnd((int p, int c) scores, int maxTurn)
     {
-        return (scores.p >= maxTurn) ? "Congratulations! You win the game!" : 
-            (scores.c >= maxTurn) ? "Computer wins the game! Better luck next time." : 
+        return (scores.p >= maxTurn) ? PlayerWinsMatch : 
+            (scores.c >= maxTurn) ? ComputerWinsMatch : 
             "";
     }
 }
 
 public class Functional : Variation
 {
-    private readonly List<string> rulesToPrint = new() {
-        "Welcome to Rock-Paper-Scissors! First to 5 wins.",
-        "Use 'r' for Rock, 'p' for Paper, 's' for Scissors."
-    };
     private readonly IRandom _random;
     private readonly Dictionary<string, string> _rules;
     private readonly List<string> _signs = new() { "r", "p", "s" };
+    private readonly Dictionary<string, string> _signToString = new() { { "r", "rock" }, { "p", "paper" }, { "s", "scissors" } };
     private (int player, int computer) _score;
     private int _maxTurn = 5;
+    private int _badKeyCounter;
 
     public Functional(IPrinter printer) : base(printer)
     {
         _random = ServiceProvider.Random;
         _rules = new Dictionary<string, string>
         {
-            { "r", "s" }, // Rock beats Scissors
-            { "p", "r" }, // Paper beats Rock
-            { "s", "p" }  // Scissors beats Paper
+            { "rs", RockWin },
+            { "pr", PaperWin },
+            { "sp", ScissorsWin } 
         };
     }
 
@@ -68,30 +76,35 @@ public class Functional : Variation
 
     public override void Start()
     {
-        rulesToPrint.ForEach(Print); // Hint: a little functional... nice :D
+        Rules.ForEach(Print);
     }
 
     public override void DidPressKey(string key)
     {
-        if (!_signs.Contains(key))
+        if (!_signs.Contains(key.ToLower()))
         {
-            Print("Invalid input! Use 'r', 'p', or 's'.");
-            return;
+            _badKeyCounter++;
+            if (_badKeyCounter == 3) { Print(OnInvalidKey); }
+            return; // Hint: it is a good practice to return at the beginning of the method, or only return at the very end. Returning in the middle is frowned upon because it is easier to miss that return.
         }
+
+        _badKeyCounter = 0;
 
         var computerKey = _random.Next(_signs); // Fun but may be confusing...
         
-        var result = FuncUtils.GetRoundResult(key, computerKey, _rules);
+        var result = FuncUtils.GetRoundResult(key.ToLower(), computerKey, _rules, _signToString);
 
         _score = result.scoreUpdate(_score);
         
-        FuncUtils.GetRoundAnnouncements(key, computerKey, result.result, _score)
+        FuncUtils.GetRoundAnnouncements(result.result, _score)
             .ForEach(Print);
 
-        if (FuncUtils.CheckGameEnd(_score, _maxTurn) is { Length: > 0 } gameEndText) // bruh...
+        if (FuncUtils.CheckGameEnd(_score, _maxTurn) is { Length: > 0 } gameEndText) // bruh... // bruh from the future too... wtf is this? :D
         {
             Print(gameEndText);
+            Print(NextMatchAnnouncement);
             _score = (0, 0);
         }
+        Print(NextRoundAnnouncement);
     }
 }
