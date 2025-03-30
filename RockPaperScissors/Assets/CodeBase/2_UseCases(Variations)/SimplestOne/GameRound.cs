@@ -1,8 +1,6 @@
-using System;
 using static RockPaperScissorsConsts;
 using static Sign;
 using static OutCome;
-using System.Net.NetworkInformation;
 
 public class GameRound: PrinterUser
 {

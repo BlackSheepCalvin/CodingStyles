@@ -20,6 +20,7 @@ public enum VariationType
     SimplestOne,
     TDD,
     TDDBetter,
+    EventsVariation,
     DataDrivenProgramming,
     Functional
 }

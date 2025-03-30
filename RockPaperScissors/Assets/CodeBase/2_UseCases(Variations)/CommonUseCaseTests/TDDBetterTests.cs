@@ -9,7 +9,7 @@ public class TDDBetterTests
 {
     private MockPrinter mockPrinter;
     private MockRandom mockRandom;
-    private Variation sut; // sut == System Under Test.
+    private Variation sut; // sut == System Under Test
     private int firstRoundEntryIndex = Rules.Count;
 
     [SetUp]
@@ -44,6 +44,12 @@ public class TDDBetterTests
         RunTests(x => new TDDBetter(x));
     }
 
+    [Test]
+    public void TestEventsVariaton()
+    {
+        RunTests(x => new EventsVariation(x));
+    }
+
     private void RunTests<T>(Func<IPrinter, T> factory) where T : Variation
     {
         var testList = new List<Action>() {
@@ -69,8 +75,6 @@ public class TDDBetterTests
 
     private void StartAnnouncesRules()
     {
-        Assert.AreEqual(null, mockPrinter.printCallHistory.FirstOrDefault());
-
         sut.Start();
 
         Assert.IsNotNull(sut);

@@ -13,6 +13,7 @@ I am experimenting with:
 * functional style (with little functional experience),
 * data driven programming, 
 * clean architecture (with little clean architecture experience)
+* I also tried an observer pattern/event/reactive kind of style, but it was a little bit forced, and probably a bad idea to try.
 
 ## The base problem
 

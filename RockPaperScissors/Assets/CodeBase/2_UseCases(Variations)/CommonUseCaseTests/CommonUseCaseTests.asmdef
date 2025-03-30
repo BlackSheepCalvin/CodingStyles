@@ -9,7 +9,8 @@
         "TDDBetter",
         "SimplestOne",
         "Functional",
-        "DataDriven"
+        "DataDriven",
+        "EventsVariation"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

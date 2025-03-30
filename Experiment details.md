@@ -122,6 +122,11 @@ If you win:
 ### Second iteration / copy paste all variations and implement V2 requirements(?)
 **(Maybe don't include variations that are obviously already bad)**
 
+Alright, i think what i should do is the following: Even if my TDDBetter tests are usable for every variation... 
+without having to change anything, or having to plan for it... I should still go ahead without tests for my variations.  
+Expect of corse for the TDDBetter, which still should be tested.  
+This way i can potentially still prove that without TDD (done right) your code will be bad. (Or not :D)
+
 Extra requirements (but have to do them in order! So "pretend to not know the future" rule!):
 
 1 Different strategies to count (best of n, ties count as win, ties count as .5, need to win by x)  
@@ -146,13 +151,8 @@ Extra requirements (but have to do them in order! So "pretend to not know the fu
 * Functional (using LLMs)  
 * maybe a version where i refactor the TDD to a best practice clean architecture something. no need to test first.  
 * TDD but better: a unit is not the function or the class, the unit is the module. This idea is from an awesome Ian Cooper talk that i accidentally found during the experiment...  
-* ? Observer pattern/Events/Binding/Reactive? - i dont know what fits best. maybe ask AI? - Focusing on "decoupling" (is it really decoupled)? - maybe not because 
-i'd just try to prove a point that events can be dangerous, and people would say i use them "incorrectly", but if i use them "correctly" then its not much difference (for this task) than the other variations.
-Just a note that observer pattern, and reactive programming CAN be very useful, depending on the problem. My rule of thumb is that reactive programming can be useful if you are explaining a system like: 
-"if this happens then the app should react like this or that, those things shuold also change, blabla. Or this this and this field here should always show the latest data that we get from here or there..."
-Long story short: if i dont anticipate anything interesting from a coding style, then why waste my time with it? 
-(OFC if i really wanna learn about reactive (and its always a good idea to learn something new), then trying to solve a problem with reactive (especially something that is promising to be interesting), - is not a waste of time)
-BUT! maybe i can do a little reactive in the best practice clean architecture!
+* Events Variation / Observer pattern/Binding/Reactive - I have decided to give this a shot because at one point it seemed like i could do something interesting.  
+For transparency: this style was never close to me, and a little bit I forced this into my experiment. I knew that this may be a bad idea, but my curiosity won.
 * ? maybe like a really bad code? :D or something that chatgpt writes? full problem vibecoding in 2024 (chatgpt 4o) - nah i dont wanna waste time
 * ? Clean architecture! (Or basically some solution where you decide to use a specific architecture and follow it) - will di maybe in best practice version
 * ? maybe best practice? - something that religiously tries to do everything right? (this should not be serious though, more like a caricature and it should be an exception from under the rules) - will do with a combined test with clean architecture

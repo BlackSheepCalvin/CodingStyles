@@ -18,12 +18,20 @@ Here I document everything every time i am annoyed or impressed. I do this immed
 #### V1 normalization:
 
 \+ Although this variation was never planned to be tested, when i created the implementation independent tests for TDDBetter, I could actually run those exact tests on the Simple variation...  
-What is really interesting to me, is that i thought my code was not testable. Because my classes had dependencies on other classes directly, and not on interfaces. But it was, in fact, testable...
+What is really interesting to me, is that i thought my code was not testable. Because my classes had dependencies on other classes directly, and not on interfaces. But it was, in fact, **testable**...
+
+\+ Super easy to normalize, fast, reliable. And i even had an idea to refactor. Refactoring was also super easy.  
+I spent the majority of the time on writing the TDDBetter tests, and applying the refactoring on other solutions.  
+TDD, TDDBetter and Data driven was the hardest to refactor for the new idea, but wasn't too bad, and it was kindof expected, so i wont deduct points from them.
+
+\+ After running the TDDBetter unit tests to check if my final solution works or not, i actually had to make more fixes in the tests, than in my code... :D
+
+\+ I've decided to try the event(/observer) variation. Guess which variation I choose as a starting point for the event one? - The Simple. Y'know... 'cause its **simple**.
 
 ### TDD done wrong. Exactly how most big companies (that i've worked for) enforce it:
 #### V1:
 \- TDD was obviously tedious to start, and kindof numbed my brain with the repeated test writings when it came to actually having to come up with an idea on how to implement the game. 
-(In real life on longer projects this is obviously wouldnt be a big issue because you get used to writing tests)
+(In real life on longer projects this obviously wouldn't be a big issue because you get used to writing tests)
 
 \- Also it (TDD) made me write a bunch of code that i had to refactor later - of corse this could be mitigated if you do it a bit smarter, but that means you'd think of architecture first and THEN tests. So NOT test first, not TDD.
 
@@ -50,6 +58,10 @@ But only for TDD, it also needed adjustments in the unit tests.
 
 \- ... aand that wasnt the only thing that got broken. An other test also got broken, because rock crushes scissors, not smashes!! Soo important.
 i'm not giving an other minus but i had to re-run tests one more time: this time because of an exclamation mark in the string - that i did not notice before!
+
+\- I have decided that i am not going to kick the dead horse any longer. Yes, TDD is "supposed" to perform better on big, and complex projects, so i should give it a chance...  
+But to me at least it is proven without a doubt, that (if I'm doing it) TDD **done wrong**, is bad, and it gets much worse over time. - Which aligns perfectly with my experience on big projects that enforced it.  
+**ELIMINATED**
 
 ### Notes regarding TDD and Simple:
 
@@ -124,6 +136,10 @@ Or: hmm, we should get game data that we had in a json... from a website! Or fro
 \* I was thinking to add this requirement for V2 or V3 to change the jsonreader or random generator, but the rules were that i shouldnt know about future change requests... 
 And i did not think about these requests because they make no sense...
 
+\+ I am adding this line here from the future in defence for Clean. Creating the infrastructure layer actually made a lot of sense with my discovery about TDD:  
+*the units in unit tests are not the classes*.  
+This led to me not having to mock everything. Guess what are the only things that still needed mocks: the classes in the infrastructure layer!
+
 ### TDDBetter (write tests for modules, not for classes!)
 
 \- Tests are still booring
@@ -144,6 +160,35 @@ If the tests are not depending on internal implementation, this could be done, r
 
 \+ This actually deserves an extra point (I think its quite obvious anyways, that this "experiment" is highly subjective). TDD done wrong -> fragile tests. TDD done right -> suddenly everything is tested.
 
+### Observer pattern / Events / Binding / Reactive etc...
+
+\* I just wanna start by saying that Observer pattern and its different forms are perfectly acceptable patterns, and a lot of programmers like them.  
+I am not one of them, but i am also not saying that it is bad to use these. So this is not an attack against any of these patterns.  
+Also to defend observer pattern in this experiment: Observer pattern have a very specific role, it never claims to be a solution for everything.  
+There are times when i am also using observer pattern, and it works perfectly.  
+I forced observer pattern into this experiment.
+
+\+ Looked like a good idea to just gather together all the things that can happen, and write the reaction to those events. Kinda like how a unit test writes down what should happen to certain inputs.
+
+\* Immediately a lot of code smells. Of corse only time will tell if those code smells are valid or not.
+
+\- Time immediately told. The code smells are valid.  
+If i have a new requirement i have to create a new event, and i have to implement logic for that event two places, while hiding the fact / pretending that those things are related.
+I am not even sure how to create these events because based on requirements they can turn out to be wrong. I decided that the safest way is to add a Sign to the event's parameters, 
+which means i am now coupling things to these events, so that i can do logic with them in both places.
+
+\- I immediately regretted my decision to do this approach, and i am just writing complaining comments everywhere in the code :D
+
+\- Well thats a hot pile of sh*t. I am sorry if I did it incorrectly, i honestly did my best to make the best out of it, and for a few minutes,  
+i really thought it would work relatively well here. (But i was sure it would fail later)
+
+\* I'm not gonna mark it as a negative but FYI my first run after i implemented this, failed.  
+It was based on the already working simple solution, so its quite an achievement. But i guess one failure after a refactoring is ok.
+
+\* For the reasons i stated in my first point, i think i am not going to include observer pattern to the final statistics.
+
+\* Allright, i am not going to prolong the inevitable. **ELIMINATED**
+
 ## Order of implementation:
 Unfortunately i cannot start a new variation with a fully clean brain, also since i choose to do this in one project i can reuse code from time to time. But it is actually interesting to see how easy it is to reuse code from one solution to the other.
 
@@ -153,7 +198,7 @@ Anyway, here is the order in which i implemented these variations:
 
 2 Simple one
 
-3 TDD
+3 TDD (**ELIMINATED** in V1 normalization)
 
 4 Data Driven Programming
 
@@ -162,6 +207,8 @@ Anyway, here is the order in which i implemented these variations:
 6 Clean architecture (but this is basically just a restructuring of the project + discovering that I almost did a perfect clean architecture without even realizing it)
 
 7 TDDBetter (TDD but writing tests for modules, not classes...)
+
+8 Events Variation (**ELIMINATED** in V1 normalization)
 
 ------------------------------
 Future plan:
@@ -174,7 +221,7 @@ V2:
 
 2 Data driven Programming
 
-3 TDD
+3 TDDBetter
 
 4 Simple one
 
@@ -186,4 +233,4 @@ V3 (not sure yet):
 
 3 Functional
 
-4 TDD
+4 TDDBetter
