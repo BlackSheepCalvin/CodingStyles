@@ -12,18 +12,16 @@ public interface ITDDGameMatch
     void EvaluatePlayerSign(Sign playerSign);
 }
 
-public class TDDGameMatch : ITDDGameMatch
+public class TDDGameMatch : PrinterUser, ITDDGameMatch
 {
     public int PlayerScore { get; private set; }
     public int ComputerScore { get; private set; }
     int targetScore = 5;
-    IPrinter printer;
     ITDDGameRound gameRound;
     public OutCome OutCome { get; private set; }
 
-    public TDDGameMatch(IPrinter printer, ITDDGameRound gameRound, int targetScore)
+    public TDDGameMatch(IPrinter printer, ITDDGameRound gameRound, int targetScore): base (printer)
     {
-        this.printer = printer;
         this.targetScore = targetScore;
         this.gameRound = gameRound;
         OutCome = inProgress;
@@ -31,7 +29,7 @@ public class TDDGameMatch : ITDDGameMatch
 
     public void AnnounceNextRound()
     {
-        printer.Print("3... 2... 1...");
+        Print("3... 2... 1...");
     }
 
     public void EvaluatePlayerSign(Sign playerSign)

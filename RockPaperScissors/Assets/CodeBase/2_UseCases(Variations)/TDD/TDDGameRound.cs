@@ -10,22 +10,20 @@ public interface ITDDGameRound
     OutCome LastOutCome { get; }
 }
 
-public class TDDGameRound: ITDDGameRound
+public class TDDGameRound: PrinterUser, ITDDGameRound
 {
-    private IPrinter printer;
     private IRandom random;
     public OutCome LastOutCome { get; private set; }
-    public TDDGameRound(IPrinter printer, IRandom random = null)
+    public TDDGameRound(IPrinter printer, IRandom random = null): base(printer)
     {
-        this.printer = printer;
         this.random = random ?? ServiceProvider.Random;
     }
 
     public void EvaluatePlayerSign(Sign playerSign)
     {
         var computerSign = random.RandomSign();
-        printer.Print($"Player: {playerSign}");
-        printer.Print($"Computer: {computerSign}");
+        Print($"Player: {playerSign}");
+        Print($"Computer: {computerSign}");
         if (playerSign == rock)
         {
             if (computerSign == rock)
@@ -34,12 +32,12 @@ public class TDDGameRound: ITDDGameRound
             }
             else if (computerSign == paper)
             {
-                printer.Print(PaperWin);
+                Print(PaperWin);
                 DidComputerWin();
             }
             else if (computerSign == scissors)
             {
-                printer.Print(RockWin);
+                Print(RockWin);
                 DidPlayerWin();
             }
         }
@@ -47,7 +45,7 @@ public class TDDGameRound: ITDDGameRound
         {
             if (computerSign == rock)
             {
-                printer.Print(PaperWin);
+                Print(PaperWin);
                 DidPlayerWin();
             }
             else if (computerSign == paper)
@@ -56,7 +54,7 @@ public class TDDGameRound: ITDDGameRound
             }
             else if (computerSign == scissors)
             {
-                printer.Print(ScissorsWin);
+                Print(ScissorsWin);
                 DidComputerWin();
             }
         }
@@ -64,12 +62,12 @@ public class TDDGameRound: ITDDGameRound
         {
             if (computerSign == rock)
             {
-                printer.Print(RockWin);
+                Print(RockWin);
                 DidComputerWin();
             }
             else if (computerSign == paper)
             {
-                printer.Print(ScissorsWin);
+                Print(ScissorsWin);
                 DidPlayerWin();
             }
             else if (computerSign == scissors)
@@ -81,7 +79,7 @@ public class TDDGameRound: ITDDGameRound
 
     void DidTie()
     {
-        printer.Print(Tie);
+        Print(Tie);
         LastOutCome = tie;
     }
     void DidPlayerWin()

@@ -32,6 +32,16 @@ Check 'Experiment details.md' to read more about the planned features for versio
 
 ## How to navigate the project:
 
+### Git strategy
+
+My git commits are **not** intended to demonstrate git flow, or version controlling / CI best practices.  
+They are intended to guide you through my journey. So I try to make commits in a way that would make that as easy as possible.  
+
+I use git tags to mark major milestones. I think there is a way to compare tags in git, so hopefully that will be useful.
+
+Since I dont use CI, some of the commits on my main branch actually don't pass the unit tests, and that is ok.  
+On normal projects, especially with a team I'd do CI(continous integration), where failed tests are not ok.
+
 ### More on Experiment details
 
 Check 'Experiment details.md' in main folder

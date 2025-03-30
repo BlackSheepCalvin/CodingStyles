@@ -68,14 +68,14 @@ public class Functional : Variation
 
     public override void Start()
     {
-        rulesToPrint.ForEach(printer.Print); // Hint: a little functional... nice :D
+        rulesToPrint.ForEach(Print); // Hint: a little functional... nice :D
     }
 
     public override void DidPressKey(string key)
     {
         if (!_signs.Contains(key))
         {
-            printer.Print("Invalid input! Use 'r', 'p', or 's'.");
+            Print("Invalid input! Use 'r', 'p', or 's'.");
             return;
         }
 
@@ -86,11 +86,11 @@ public class Functional : Variation
         _score = result.scoreUpdate(_score);
         
         FuncUtils.GetRoundAnnouncements(key, computerKey, result.result, _score)
-            .ForEach(printer.Print);
+            .ForEach(Print);
 
         if (FuncUtils.CheckGameEnd(_score, _maxTurn) is { Length: > 0 } gameEndText) // bruh...
         {
-            printer.Print(gameEndText);
+            Print(gameEndText);
             _score = (0, 0);
         }
     }

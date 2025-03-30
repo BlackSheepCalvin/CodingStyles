@@ -4,11 +4,11 @@ public class HelloWorld: Variation
 
     public override void Start()
     {
-        printer.Print("Hello World");
+        Print("Hello World");
     }
 
     public override void DidPressKey(string key)
     {
-        printer.Print("Noted.");
+        Print("Noted.");
     }
 }

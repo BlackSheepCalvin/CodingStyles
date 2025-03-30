@@ -2,90 +2,78 @@ using System;
 using static RockPaperScissorsConsts;
 using static Sign;
 using static OutCome;
+using System.Net.NetworkInformation;
 
-public class GameRound
+public class GameRound: PrinterUser
 {
-    private IPrinter printer;
     private IRandom random = ServiceProvider.Random;
     public OutCome LastOutCome { get; private set; }
-    public GameRound(IPrinter printer) { 
-        this.printer = printer;
-    }
-    public void AnnounceNextRound()
-    {
-        printer.Print("");
-        printer.Print("3...2..1..");
-    }
+    public GameRound(IPrinter printer): base (printer) { }
 
     public void EvaluatePlayerSign(Sign playerSign)
     {
         var computerSign = random.RandomSign();
-        printer.Print($"Player: {playerSign}");
-        printer.Print($"Computer: {computerSign}");
+        var prefix = $"You showed {playerSign}! Computer showed {computerSign}! -";
         if (playerSign == rock)
         {
             if (computerSign == rock)
             {
-                DidTie();
+                DidTie($"{prefix} {Tie}!");
             }
             else if (computerSign == paper)
             {
-                printer.Print(PaperWin);
-                DidComputerWin();
+                DidComputerWin($"{prefix} {PaperWin}!");
             }
             else if (computerSign == scissors)
             {
-                printer.Print(RockWin);
-                DidPlayerWin();
+                DidPlayerWin($"{prefix} {RockWin}!");
             }
         }
         else if (playerSign == paper)
         {
             if (computerSign == rock)
             {
-                printer.Print(PaperWin);
-                DidPlayerWin();
+                DidPlayerWin($"{prefix} {PaperWin}!");
             }
             else if (computerSign == paper)
             {
-                DidTie();
+                DidTie($"{prefix} {Tie}!");
             }
             else if (computerSign == scissors)
             {
-                printer.Print(ScissorsWin);
-                DidComputerWin();
+                DidComputerWin($"{prefix} {ScissorsWin}!");
             }
         }
         else if (playerSign == scissors)
         {
             if (computerSign == rock)
             {
-                printer.Print(RockWin);
-                DidComputerWin();
+                DidComputerWin($"{prefix} {RockWin}!");
             }
             else if (computerSign == paper)
             {
-                printer.Print(ScissorsWin);
-                DidPlayerWin();
+                DidPlayerWin($"{prefix} {ScissorsWin}!");
             }
             else if (computerSign == scissors)
             {
-                DidTie();
+                DidTie($"{prefix} {Tie}!");
             }
         }
     }
 
-    void DidTie() // Hint: I could do a side effect for LastOutCome setter, instead of doing this, but it would be stupid imho.
+    void DidTie(string text) // Hint: I could do a side effect for LastOutCome setter, instead of doing this, but it would be stupid imho.
     {
-        printer.Print(Tie);
+        Print(text);
         LastOutCome = tie;
     }
-    void DidPlayerWin()
+    void DidPlayerWin(string text)
     {
+        Print(text);
         LastOutCome = playerWin;
     }
-    void DidComputerWin()
+    void DidComputerWin(string text)
     {
+        Print(text);
         LastOutCome = computerWin;
     }
 }

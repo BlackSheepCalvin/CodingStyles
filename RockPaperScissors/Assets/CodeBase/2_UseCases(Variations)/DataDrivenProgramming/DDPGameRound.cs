@@ -3,27 +3,25 @@ using static OutCome;
 using System;
 using System.Linq;
 
-public class DDPGameRound
+public class DDPGameRound: PrinterUser
 {
     public OutCome OutCome;
     private GameData data;
     private Random random = new Random();
-    private IPrinter printer;
-
-    public DDPGameRound(IPrinter printer, GameData data)
+    
+    public DDPGameRound(IPrinter printer, GameData data) : base(printer)
     {
         this.data = data;
-        this.printer = printer;
     }
 
     public void EvaluatePlayerSign(string playerSign)
     {
         var computerSign = GetRandomSign(data.signs);
-        printer.Print($"Computer: {computerSign}");
-        printer.Print($"Player: {playerSign}");
+        Print($"Computer: {computerSign}");
+        Print($"Player: {playerSign}");
         if (computerSign == playerSign)
         {
-            printer.Print("Tie!");
+            Print("Tie!");
             OutCome = tie;
             return;
         }
@@ -33,8 +31,8 @@ public class DDPGameRound
 
         if (!string.IsNullOrEmpty(playerWinsRule.winner))
         {
-            printer.Print(playerWinsRule.ToString());
-            printer.Print("You win!");
+            Print(playerWinsRule.ToString());
+            Print("You win!");
             OutCome = playerWin;
             return;
         }
@@ -44,14 +42,14 @@ public class DDPGameRound
 
         if (!string.IsNullOrEmpty(computerWinsRule.winner))
         {
-            printer.Print(computerWinsRule.ToString());
-            printer.Print("Computer wins!");
+            Print(computerWinsRule.ToString());
+            Print("Computer wins!");
             OutCome = computerWin;
             return;
         }
 
         OutCome = tie;
-        printer.Print("Tie!");
+        Print("Tie!");
     }
 
     public string GetRandomSign(List<string> list)

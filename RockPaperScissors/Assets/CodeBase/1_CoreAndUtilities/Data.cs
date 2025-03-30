@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 public enum Sign
 {
     rock,
@@ -23,10 +26,25 @@ public enum OutCome
 
 public struct RockPaperScissorsConsts
 {
+    public static List<String> Rules = new List<String>() {
+        "Rock, Paper, Scissors!",
+        "Game rules:",
+        "You play against the computer. In every round, you hit 'r' for rock, 'p' for paper, and 's' for scissors.",
+        "Just a reminder:",
+        "Rock crushes Scissors,",
+        "Scissors cut paper,",
+        "And paper covers rock!",
+        "The first to 5 wins!",
+        "Ready? Go!",
+        "3... 2... 1..."
+    };
     public static string RockWin = "Rock crushes scissors";
     public static string PaperWin = "Paper covers rock";
     public static string ScissorsWin = "Scissors cut paper";
     public static string Tie = "Tie";
     public static string ComputerWinsMatch = "Computer wins the match! Better luck next time!";
     public static string PlayerWinsMatch = "You win the match! Congratulations!";
+    public static string OnInvalidKey = "Valid keys are: 'r' for rock, 'p' for paper, and 's' for scissors!";
+    public static string NextRoundAnnouncement = "3... 2... 1...";
+    public static string NextMatchAnnouncement = "Ready for the next match?";
 }

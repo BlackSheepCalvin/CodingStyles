@@ -95,7 +95,7 @@ Third, etc...: "You play against the computer. In every round, you hit 'r' for r
 On pressing invalid key: nothing should happen.
 
 On pressing invalid key 3 times after eachother (valid key resets this counter):  
-"Valid key are: 'r' for rock, 'p' for paper, and 's' for scissors!"
+"Valid keys are: 'r' for rock, 'p' for paper, and 's' for scissors!"
 
 On pressing valid key (r for example, and computer does paper):  
 "You showed rock! Computer showed paper! - Paper covers rock!"  
@@ -107,7 +107,7 @@ On pressing valid key (r for example, and computer does scissors):
 
 On tie:  
 "You showed rock! Computer showed rock! - Tie!"  
-"Computer: 0, Player: 1"
+"Computer: 0, Player: 0"
 
 Between each round:  
 "3... 2... 1..."

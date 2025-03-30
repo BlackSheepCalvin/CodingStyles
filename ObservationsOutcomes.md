@@ -142,6 +142,8 @@ If the tests are not depending on internal implementation, this could be done, r
 
 \+ I can now update the tests for the normalization, and use tests written for this one variation to verify all other variations, if they work the way they are supposed to, or not... very nice.
 
+\+ This actually deserves an extra point (I think its quite obvious anyways, that this "experiment" is highly subjective). TDD done wrong -> fragile tests. TDD done right -> suddenly everything is tested.
+
 ## Order of implementation:
 Unfortunately i cannot start a new variation with a fully clean brain, also since i choose to do this in one project i can reuse code from time to time. But it is actually interesting to see how easy it is to reuse code from one solution to the other.
 
