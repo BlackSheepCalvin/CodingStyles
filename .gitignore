@@ -16,6 +16,7 @@ RockPaperScissors/[Uu]serSettings/Layouts
 *.userprefs
 *.pidb
 *.booproj
+InitTestScene*
 
 # Unity3D generated meta files
 *.pidb.meta
