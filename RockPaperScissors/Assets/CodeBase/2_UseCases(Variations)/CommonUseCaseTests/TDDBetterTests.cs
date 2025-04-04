@@ -23,6 +23,7 @@ public class TDDBetterTests
     [Test]
     public void TestDataDriven()
     {
+        ServiceProvider.DataProvider = new InMemoryJSONReader();
         RunTests(x => new DataDrivenProgramming(x));
     }
 

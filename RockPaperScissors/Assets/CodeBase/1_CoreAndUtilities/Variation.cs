@@ -13,7 +13,7 @@ public abstract class Variation: PrinterUser
 
 public abstract class PrinterUser
 {
-    private IPrinter printer; //interesting... i restrict this to private, i wonder if its a good idea.
+    protected IPrinter printer; //interesting... i restrict this to private, i wonder if its a good idea.
 
     public PrinterUser(IPrinter printer) // Hint: Dependency injection + Dependency inversion principle
     {

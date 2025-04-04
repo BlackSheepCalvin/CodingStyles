@@ -1,0 +1,27 @@
+using System;
+using Newtonsoft.Json;
+
+public class InMemoryJSONReader : IDataProvider
+{
+    public void RequestData<T>(string dataId, Action<T> callback)
+    {
+        try
+        {
+            T data = JsonConvert.DeserializeObject<T>(rawData);
+            callback?.Invoke(data);
+        }
+        catch {}
+    }
+
+    private string rawData = @"{
+    ""rulesDescription"": ""{0}!  Game rules:  You play against the computer. In every round, you hit {1}.  Just a reminder:  {2}!  The first to {3} wins!  Ready? Go!  3... 2... 1..."",
+    ""signs"": [""rock"", ""paper"", ""scissors""],
+    ""rules"": [
+        { ""winner"": ""rock"", ""action"": ""crushes"", ""loser"": ""scissors"" },
+        { ""winner"": ""scissors"", ""action"": ""cut"", ""loser"": ""paper"" },
+        { ""winner"": ""paper"", ""action"": ""covers"", ""loser"": ""rock"" }
+    ],
+    ""invalidKeyMessage"": ""Valid keys are: {0}!"",
+    ""matchLength"": 5
+    }";
+}

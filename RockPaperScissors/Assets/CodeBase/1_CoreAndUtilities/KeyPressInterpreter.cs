@@ -24,14 +24,13 @@ using System.Linq;
 // Talking about overthinking... this comment is quite long now.
 public class KeyPressInterpreter
 {
-    private List<(string, string)> validCommands;
+    public List<(string, string)> ValidCommands { get; private set; }
     private string currentInput = "";
 
     public KeyPressInterpreter(List<string> validCommands)
     {
-        this.validCommands = validCommands
+        ValidCommands = validCommands
             .Select(cmd => (GetMinimumRecognizableString(cmd, validCommands), cmd))
-            .OrderByDescending(cmd => cmd.Item2.Length)
             .ToList();
     }
 
@@ -54,7 +53,7 @@ public class KeyPressInterpreter
     {
         currentInput += key.ToLower();
 
-        foreach (var command in validCommands)
+        foreach (var command in ValidCommands)
         {
             if (currentInput == command.Item1)
             {
@@ -64,7 +63,7 @@ public class KeyPressInterpreter
             }
         }
 
-        if (!validCommands.Any(cmd => cmd.Item1.StartsWith(currentInput)))
+        if (!ValidCommands.Any(cmd => cmd.Item1.StartsWith(currentInput)))
         {
             currentInput = "";
             return "";

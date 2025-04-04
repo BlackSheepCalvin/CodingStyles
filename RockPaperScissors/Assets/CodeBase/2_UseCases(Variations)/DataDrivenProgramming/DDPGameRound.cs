@@ -7,7 +7,7 @@ public class DDPGameRound: PrinterUser
 {
     public OutCome OutCome;
     private GameData data;
-    private Random random = new Random();
+    private IRandom random = ServiceProvider.Random;
     
     public DDPGameRound(IPrinter printer, GameData data) : base(printer)
     {
@@ -17,11 +17,10 @@ public class DDPGameRound: PrinterUser
     public void EvaluatePlayerSign(string playerSign)
     {
         var computerSign = GetRandomSign(data.signs);
-        Print($"Computer: {computerSign}");
-        Print($"Player: {playerSign}");
+        var prefix = $"You showed {playerSign}! Computer showed {computerSign}! -";
         if (computerSign == playerSign)
         {
-            Print("Tie!");
+            Print($"{prefix} {RockPaperScissorsConsts.Tie}!");
             OutCome = tie;
             return;
         }
@@ -31,8 +30,7 @@ public class DDPGameRound: PrinterUser
 
         if (!string.IsNullOrEmpty(playerWinsRule.winner))
         {
-            Print(playerWinsRule.ToString());
-            Print("You win!");
+            Print($"{prefix} {playerWinsRule.ToString().CapitalizeFirst()}!");
             OutCome = playerWin;
             return;
         }
@@ -42,14 +40,14 @@ public class DDPGameRound: PrinterUser
 
         if (!string.IsNullOrEmpty(computerWinsRule.winner))
         {
-            Print(computerWinsRule.ToString());
-            Print("Computer wins!");
+            Print($"{prefix} {computerWinsRule.ToString().CapitalizeFirst()}!");
             OutCome = computerWin;
             return;
         }
 
         OutCome = tie;
-        Print("Tie!");
+        Print($"Error: couldn't find rule"); // Hint: not sure what the best way to handle this. running a datavalidation script on data after json parsing could be one way.
+                                             // But we make the error apparent so if there is a bug, it can be investigated, and the game won't pretend that everything is fine.
     }
 
     public string GetRandomSign(List<string> list)

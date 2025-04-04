@@ -1,22 +1,29 @@
+using System.Collections.Generic;
+using System.Reflection;
 using static OutCome;
+using static RockPaperScissorsConsts;
 public class DataDrivenProgramming : Variation
 {
-    IDataProvider dataProvider;
-    KeyPressInterpreter keyPressInterpreter;
-    DDPGameMatch gameMatch;
+    private IDataProvider dataProvider;
+    private KeyPressInterpreter keyPressInterpreter;
+    private DDPGameMatch gameMatch;
+    private int badKeyCounter;
+    private List<string> rulesDescriptionToList;
+    private string invalidKeyMessage;
 
     public DataDrivenProgramming(IPrinter printer) : base(printer)
     {
         dataProvider = ServiceProvider.DataProvider;
-        gameMatch = new DDPGameMatch(printer);
     }
 
     public override void Start()
     {
         dataProvider.RequestData<GameData>("data", data => {
             keyPressInterpreter = ServiceProvider.KeyPressInterpreterFactory(data.signs);
-            gameMatch.SetData(data);
-            StartWithData(data);
+            gameMatch = new DDPGameMatch(printer, data);
+            rulesDescriptionToList = data.RulesDescriptionToList(keyPressInterpreter.ValidCommands);
+            invalidKeyMessage = data.InvalidKeyMessage(keyPressInterpreter.ValidCommands);
+            AnnounceRules();
         });
     }
 
@@ -25,8 +32,13 @@ public class DataDrivenProgramming : Variation
         var sign = keyPressInterpreter.EvaluateInputKey(key);
         if (sign == "")
         {
+            badKeyCounter++;
+            if (badKeyCounter == 3) { Print(invalidKeyMessage); }
             return;
         }
+
+        badKeyCounter = 0;
+
         gameMatch.EvaluatePlayerSign(sign);
         EvaluateGameState(gameMatch.OutCome);
     }
@@ -36,17 +48,18 @@ public class DataDrivenProgramming : Variation
         switch (currentGameState)
         {
             case playerWin:
-                Print("Congratulations! You won the match!");
+                Print(PlayerWinsMatch);
+                Print(NextMatchAnnouncement);
                 break;
             case computerWin:
-                Print("Better luck next time! Computer won the match!");
+                Print(ComputerWinsMatch);
+                Print(NextMatchAnnouncement);
                 break;
             case tie:
                 Print($"Aaand tie... somehow!");
+                Print(NextMatchAnnouncement);
                 break;
             case inProgress:
-                Print($"Computer: {gameMatch.ComputerScore}");
-                Print($"Player: {gameMatch.PlayerScore}");
                 break;
         }
         AnnounceNextRound();
@@ -54,33 +67,15 @@ public class DataDrivenProgramming : Variation
 
     void AnnounceNextRound()
     {
-        Print("");
-        Print("3... 2... 1...");
+        Print(NextRoundAnnouncement);
     }
 
-    void StartWithData(GameData data)
+    void AnnounceRules()
     {
-        Print(FormatRulesDescription(data));
-    }
-
-    string FormatRulesDescription(GameData gameRules)
-    {
-        string signsText = string.Join("-", gameRules.signs);
-
-        string rulesText = "";
-        foreach (var rule in gameRules.rules)
+        rulesDescriptionToList.ForEach(rule =>
         {
-            rulesText += $"{rule}\n";
-        }
-
-        string formattedDescription = string.Format(
-            gameRules.rulesDescription,
-            signsText,
-            rulesText.Trim(),
-            gameRules.matchLength
-        );
-
-        return formattedDescription;
+            Print(rule);
+        });
     }
 }
 

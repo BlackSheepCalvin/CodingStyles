@@ -71,7 +71,7 @@ But to me at least it is proven without a doubt, that (if I'm doing it) TDD **do
 
 \+ TDD was actually reusing a lot of code from the simple one, and it was very easy to reuse (obviously mostly because we had the same task :D In real life this would never happen, whoever wants to reuse, will want to use the module differently) 
 
-### Data Driven Development:
+### Data Driven Programming:
 
 \+ LLMs (chatgpt 4o) are great for assisting with jsons and structs
 
@@ -98,6 +98,28 @@ It was literally just:
 * rename the method signatures, types, and names (because i changed all these for the interface to be more generic and customizable)
 * moving the JSONReader from Core to Infrastructure
 * Then it worked perfectly for the first time!
+
+#### V1 normalization:
+
+\- Allright the normalization of the game rules feature hit this one the hardest :D  
+It actually made me stop for a while - although before this, the functional normalization also drained a lot of energy.  
+Obviously the tricky part is to make the different parts of the text work dynamically, and also that this is an array of text, not just one text.  
+But this is a feature I dont even need (because of the "can't see the future" rule of this experiment). 
+
+\- The above is also a heavy violation of YAGNI.  
+But to the defense of data driven: this actually gives me something powerful in return for my efforts... in contrast to the functional, which just makes maintenance harder for no reason at all.
+
+\* A really small one but because of these complexity, i actually spotted an error in the requirements, that i havent spotted with any other solutions. (capital S for Scissors, but lowercase for other signs)  
+But its because it'd be harder for me to implement that exception :D  
+This actually happened to me on real projects too. Because of the data driven nature of my code, its harder for me to implement illogical things.  
+Sometimes designers like that i spot these errors, sometimes they are just annoyed: "Well it doesn't really matter, but ok, feel free to change the requirement if its easier for you!" :P :D
+
+\+ Funny that **the only tests that i haven't deleted** as a result of the TDDBetter style tests, **are actually the tests i wrote for the Data Driven style**. These tests actually help to make complicated stuff safe to use.  
+**The tests i wrote for functional style, and the tests that i wrote for TDD (done wrong), are all useless** now, and i did not think for a second to delete them.
+
+\* My brain just feels refreshed, while working on Data driven again. But yea, maybe this "fun" is YAGNI, as i am not supposed to know yet about lizard/spock feature.
+
+\- I already gave a negative to this one, but yea... the normalization somehow took a lot of time for me to figure things out. It was mostly the combination of the language + possibility to have multiple signs. Of corse i didnt HAVE to do it this hard way. But i wanted to! :D
 
 ### Functional:
 

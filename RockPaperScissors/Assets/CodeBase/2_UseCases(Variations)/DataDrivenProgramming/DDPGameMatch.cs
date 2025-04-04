@@ -1,13 +1,14 @@
+using System.Diagnostics;
 using static OutCome;
 
-public class DDPGameMatch
+public class DDPGameMatch: PrinterUser
 {
     public OutCome OutCome;
     private DDPGameRound gameRound;
     private GameData data;
-    public int PlayerScore { get; private set; }
-    public int ComputerScore { get; private set; }
-    public DDPGameMatch(IPrinter printer)
+    private int playerScore;
+    private int computerScore;
+    public DDPGameMatch(IPrinter printer, GameData data): base(printer)
     {
         // Hint: Fearless developer: I wonder what happens if data does not exist yet when i start using this class...
         // It is a struct, but the struct contains lists. I am not very good at C#.
@@ -19,10 +20,6 @@ public class DDPGameMatch
         // I dont want my application to become some kind of zombie, that kindof works and never crashes, but sometimes it works... interestingly...
         // I want my application to die if it is not worthy. So it can reborn stronger, and i can drain knowledge from that! :D
         gameRound = new DDPGameRound(printer, data);
-    }
-
-    public void SetData(GameData data)
-    {
         this.data = data;
     }
 
@@ -31,10 +28,10 @@ public class DDPGameMatch
         gameRound.EvaluatePlayerSign(signId);
         switch (gameRound.OutCome) {
             case playerWin:
-                PlayerScore++;
+                playerScore++;
                 break;
             case computerWin:
-                ComputerScore++;
+                computerScore++;
                 break;
             case tie:
                 break;
@@ -44,30 +41,28 @@ public class DDPGameMatch
 
     void UpdateGameState()
     {
-        if (PlayerScore >= data.matchLength && ComputerScore >= data.matchLength)
+        Print($"Computer: {computerScore}, Player: {playerScore}");
+        if (playerScore >= data.matchLength && computerScore >= data.matchLength)
         {
             OutCome = tie;
             Reset();
-        }
-
-        if (PlayerScore >= data.matchLength)
+        } else if (playerScore >= data.matchLength)
         {
             OutCome = playerWin;
             Reset();
-        }
-
-        if (ComputerScore >= data.matchLength)
+        } else if (computerScore >= data.matchLength)
         {
             OutCome = computerWin;
             Reset();
+        } else
+        {
+            OutCome = inProgress;
         }
-
-        OutCome = inProgress;
     }
 
     void Reset()
     {
-        PlayerScore = 0;
-        ComputerScore = 0;
+        playerScore = 0;
+        computerScore = 0;
     }
 }

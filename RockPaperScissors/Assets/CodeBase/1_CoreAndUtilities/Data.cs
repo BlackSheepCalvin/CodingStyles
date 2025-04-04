@@ -31,7 +31,7 @@ public struct RockPaperScissorsConsts
         "Game rules:",
         "You play against the computer. In every round, you hit 'r' for rock, 'p' for paper, and 's' for scissors.",
         "Just a reminder:",
-        "Rock crushes Scissors,",
+        "Rock crushes scissors,",
         "Scissors cut paper,",
         "And paper covers rock!",
         "The first to 5 wins!",

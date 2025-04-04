@@ -1,5 +1,5 @@
 {
-    "rulesDescription": "So this is a {0} game! \nThe rules are: {1}\nFirst to score {2} wins the game!",
+    "rulesDescription": "{0}!  Game rules:  You play against the computer. In every round, you hit {1}.  Just a reminder:  {2}!  The first to {3} wins!  Ready? Go!  3... 2... 1...",
     "signs": ["rock", "paper", "scissors"],
     "rules": [
         {
@@ -9,7 +9,7 @@
         },
         {
             "winner": "scissors",
-            "action": "cuts",
+            "action": "cut",
             "loser": "paper"
         },
         {
@@ -18,5 +18,6 @@
             "loser": "rock"
         }
     ],
+    invalidKeyMessage: "Valid keys are: {0}!",
     "matchLength": 5
 }
