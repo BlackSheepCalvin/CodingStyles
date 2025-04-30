@@ -2,14 +2,14 @@ using static OutCome;
 using static RockPaperScissorsConsts;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
-public class TDDBetter : Variation
+public class TDDClassic : Variation
 {
-    private TDDBetterMatch gameMatch;
+    private TDDClassicMatch gameMatch;
     private int badKeyCounter;
 
-    public TDDBetter(IPrinter printer) : base(printer)
+    public TDDClassic(IPrinter printer) : base(printer)
     {
-        gameMatch = new TDDBetterMatch(printer);
+        gameMatch = new TDDClassicMatch(printer);
     }
     public override void Start()
     {

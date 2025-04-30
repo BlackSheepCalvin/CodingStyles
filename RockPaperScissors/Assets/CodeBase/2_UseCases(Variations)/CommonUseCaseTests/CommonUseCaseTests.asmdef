@@ -6,11 +6,11 @@
         "UnityEditor.TestRunner",
         "CoreUtilities",
         "CoreTests",
-        "TDDBetter",
         "SimplestOne",
         "Functional",
         "DataDriven",
-        "EventsVariation"
+        "EventsVariation",
+        "TDDClassic"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

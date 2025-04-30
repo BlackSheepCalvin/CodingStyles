@@ -1,7 +1,7 @@
 using static Sign;
 using static OutCome;
 using static RockPaperScissorsConsts;
-class TDDBetterRound: PrinterUser
+class TDDClassicRound: PrinterUser
 {
     IRandom random = ServiceProvider.Random; // Hint: Fearless developer: this is a new idea i am not sure if its ok to do this,
                                              // but until i encounter an issue, this is more convenient, and i am fearless.
@@ -13,7 +13,7 @@ class TDDBetterRound: PrinterUser
                               // But - I can create a tech debt ticket for someone to investigate. Especially if ServiceProvider.Random turns out to be ok.
                               // Note: although this is now simplified, i leave these thoughts here still
 
-    internal TDDBetterRound(IPrinter printer): base(printer) { }
+    internal TDDClassicRound(IPrinter printer): base(printer) { }
 
     internal OutCome EvaluatePlayerSign(Sign playerSign)
     {

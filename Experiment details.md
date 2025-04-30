@@ -31,13 +31,14 @@ That does not mean I learned nothing from TDD, functional, reactive, design patt
 
 Commit to git repo.
 
-All variations should be tested by change request ideas like:
-* could you change this or that text?
-* could you change this or that behavior?
-* what if we want to introduce something else?
-* what if we change the rules?
-* what if we want to write something out differently?
-* what if we want to log something? Kindof like analytics?
+~~All variations should be tested by change request ideas like:~~  
+~~could you change this or that text?, could you change this or that behavior?, what if we want to introduce something else?, what if we change the rules?, what if we want to write something out differently?, what if we want to log something? Kindof like analytics?~~
+
+Ok, this idea above is harder to exectute than I first thought. Its easy to go through a codebase, and judge/make assumptions/have random opinions.  
+But. Its hard to go through 7 of them, and try to objectively compare them for the same things.  
+Also, I already have a pretty good system that kindof covers all this: i write down my thoughts and feelings during development as i go through the requirements.  
+This will already indicate if there is something really wrong with the code, because as i work on it, things will start to annoy me.  
+And i also created Scores.md, where i write down my current opinion on maintainability, readability, etc.
 
 Initially variations can differ from eachother a little, but during this testing phase, all variations should be changed so the write exactly the same messages and behave the same way. 
 (But to keep their own distinct styles, they dont have to use the same text sources!) - this step I'll call requirement normalization.
@@ -122,10 +123,10 @@ If you win:
 ### Second iteration / copy paste all variations and implement V2 requirements(?)
 **(Maybe don't include variations that are obviously already bad)**
 
-Alright, i think what i should do is the following: Even if my TDDBetter tests are usable for every variation... 
+Alright, i think what i should do is the following: Even if my TDDClassic tests are usable for every variation... 
 without having to change anything, or having to plan for it... I should still go ahead without tests for my variations.  
-Expect of corse for the TDDBetter, which still should be tested.  
-This way i can potentially still prove that without TDD (done right) your code will be bad. (Or not :D)
+Expect of corse for the TDDClassic, which still should be tested.  
+This way i can potentially still prove that without TDDClassic your code will be bad. (Or not :D)
 
 Extra requirements (but have to do them in order! So "pretend to not know the future" rule!):
 
@@ -145,12 +146,14 @@ Extra requirements (but have to do them in order! So "pretend to not know the fu
 
 # Variations (Ideas for variations)
 * HelloWorld - example project to test the system that initializes the different variations, and runs them. This one just writes Hello World and thats all. But it also has a test!  
-* Simple - gradually evolving, always go towards simplest solution - does not mean it should be dumb  
-* TDD - test driven, the way I see almost all companies doing it  
+* Simple - gradually evolving, always go towards simplest solution - does not mean it should be dumb. Some thoughts: sometimes a complex solution may require a more complicated technique, or design pattern, to describe or solve the problem in a simple way.  
+In this case a simple(dumb) approach would actually result in a very complex code. Therefore in a self-contradictory way, we should use the slightly more complex pattern to make the code simple.  
+So one may argue that simple here just means "best". But still the distinction is that here we always aim for simplicity, and only complicate when absolutely necessary.  
+* TDD(Mockist) - test driven, the way I see almost all companies doing it  
 * Data driven programming  
 * Functional (using LLMs)  
 * maybe a version where i refactor the TDD to a best practice clean architecture something. no need to test first.  
-* TDD but better: a unit is not the function or the class, the unit is the module. This idea is from an awesome Ian Cooper talk that i accidentally found during the experiment...  
+* TDD(Classic): a unit is not the function or the class, the unit is the module. This idea is from an awesome Ian Cooper talk that i accidentally found during the experiment...  
 * Events Variation / Observer pattern/Binding/Reactive - I have decided to give this a shot because at one point it seemed like i could do something interesting.  
 For transparency: this style was never close to me, and a little bit I forced this into my experiment. I knew that this may be a bad idea, but my curiosity won.
 * ? maybe like a really bad code? :D or something that chatgpt writes? full problem vibecoding in 2024 (chatgpt 4o) - nah i dont wanna waste time

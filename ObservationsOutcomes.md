@@ -17,20 +17,20 @@ Here I document everything every time i am annoyed or impressed. I do this immed
 
 #### V1 normalization:
 
-\+ Although this variation was never planned to be tested, when i created the implementation independent tests for TDDBetter, I could actually run those exact tests on the Simple variation...  
+\+ Although this variation was never planned to be tested, when i created the implementation independent tests for TDDClassic, I could actually run those exact tests on the Simple variation...  
 What is really interesting to me, is that i thought my code was not testable. Because my classes had dependencies on other classes directly, and not on interfaces. But it was, in fact, **testable**...
 
 \+ Super easy to normalize, fast, reliable. And i even had an idea to refactor. Refactoring was also super easy.  
-I spent the majority of the time on writing the TDDBetter tests, and applying the refactoring on other solutions.  
-TDD, TDDBetter and Data driven was the hardest to refactor for the new idea, but wasn't too bad, and it was kindof expected, so i wont deduct points from them.
+I spent the majority of the time on writing the TDDClassic tests, and applying the refactoring on other solutions.  
+TDDMockist, TDDClassic and Data driven was the hardest to refactor for the new idea, but wasn't too bad, and it was kindof expected, so i wont deduct points from them.
 
-\+ After running the TDDBetter unit tests to check if my final solution works or not, i actually had to make more fixes in the tests, than in my code... :D
+\+ After running the TDDClassic unit tests to check if my final solution works or not, i actually had to make more fixes in the tests, than in my code... :D
 
 \+ I've decided to try the event(/observer) variation. Guess which variation I choose as a starting point for the event one? - The Simple. Y'know... 'cause its **simple**.
 
-\* I'm not even gonna add extra points now so i don't do favoritism but I've copied code from Simple one to TDDBetter when normalizing TDDBetter.
+\* I'm not even gonna add extra points now so i don't do favoritism but I've copied code from Simple one to TDDClassic when normalizing it.
 
-### TDD done wrong. Exactly how most big companies (that i've worked for) enforce it:
+### TDD (mockist). Exactly how most big companies (that i've worked for) enforce it:
 #### V1:
 \- TDD was obviously tedious to start, and kindof numbed my brain with the repeated test writings when it came to actually having to come up with an idea on how to implement the game. 
 (In real life on longer projects this obviously wouldn't be a big issue because you get used to writing tests)
@@ -62,7 +62,9 @@ But only for TDD, it also needed adjustments in the unit tests.
 i'm not giving an other minus but i had to re-run tests one more time: this time because of an exclamation mark in the string - that i did not notice before!
 
 \- I have decided that i am not going to kick the dead horse any longer. Yes, TDD is "supposed" to perform better on big, and complex projects, so i should give it a chance...  
-But to me at least it is proven without a doubt, that (if I'm doing it) TDD **done wrong**, is bad, and it gets much worse over time. - Which aligns perfectly with my experience on big projects that enforced it.  
+But to me at least it is proven without a doubt, that (if I'm doing it) Mockist TDD is bad, and it gets much worse over time. - Which aligns perfectly with my experience on big projects that enforced it.  
+Just a note that i can imagine that for certain teams, forcing mockist TDD can lead to slightly better code quality, if otherwise developers would write spagetti code. So it can teach/guide developers to something better. But after that, it is just burden.
+And yes, you can use techniques to make mockist style slightly less agonizing, by using mocking frameworks, dependency injection techniques, and inventing clever tricks to make tests prettier. But i see these as bandaids to a serious problem.
 **ELIMINATED**
 
 ### Notes regarding TDD and Simple:
@@ -96,8 +98,9 @@ It was literally just:
 * creating a new interface
 * making JSONReader confirm to that interface
 * rename the method signatures, types, and names (because i changed all these for the interface to be more generic and customizable)
-* moving the JSONReader from Core to Infrastructure
-* Then it worked perfectly for the first time!
+* moving the JSONReader from Core to Infrastructure  
+
+Then it worked perfectly for the first time!
 
 #### V1 normalization:
 
@@ -114,8 +117,8 @@ But its because it'd be harder for me to implement that exception :D
 This actually happened to me on real projects too. Because of the data driven nature of my code, its harder for me to implement illogical things.  
 Sometimes designers like that i spot these errors, sometimes they are just annoyed: "Well it doesn't really matter, but ok, feel free to change the requirement if its easier for you!" :P :D
 
-\+ Funny that **the only tests that i haven't deleted** as a result of the TDDBetter style tests, **are actually the tests i wrote for the Data Driven style**. These tests actually help to make complicated stuff safe to use.  
-**The tests i wrote for functional style, and the tests that i wrote for TDD (done wrong), are all useless** now, and i did not think for a second to delete them.
+\+ Funny that **the only tests that i haven't deleted** as a result of the TDDClassic style tests, **are actually the tests i wrote for the Data Driven style**. These tests actually help to make complicated stuff safe to use.  
+**The tests i wrote for functional style, and the tests that i wrote for TDDMockist, are all useless** now, and i did not think for a second to delete them.
 
 \* My brain just feels refreshed, while working on Data driven again. But yea, maybe this "fun" is YAGNI, as i am not supposed to know yet about lizard/spock feature.
 
@@ -185,7 +188,7 @@ And i did not think about these requests because they make no sense...
 *the units in unit tests are not the classes*.  
 This led to me not having to mock everything. Guess what are the only things that still needed mocks: the classes in the infrastructure layer!
 
-### TDDBetter (write tests for modules, not for classes!)
+### TDDClassic (write tests for modules, not for classes!)
 
 \- Tests are still booring
 
@@ -199,13 +202,13 @@ If the tests are not depending on internal implementation, this could be done, r
 
 #### V1 normalization:
 
-\+ This is super interesting to me. The same tests, that i wrote for TDDBetter variation... turns out i can reuse them for all the other implementations! Without ever planning for this.
+\+ This is super interesting to me. The same tests, that i wrote for TDDClassic variation... turns out i can reuse them for all the other implementations! Without ever planning for this.
 
 \+ I can now update the tests for the normalization, and use tests written for this one variation to verify all other variations, if they work the way they are supposed to, or not... very nice.
 
-\+ This actually deserves an extra point (I think its quite obvious anyways, that this "experiment" is highly subjective). TDD done wrong -> fragile tests. TDD done right -> suddenly everything is tested.
+\+ This actually deserves an extra point (I think its quite obvious anyways, that this "experiment" is highly subjective). TDDMockist -> fragile tests. TDDClassic -> suddenly everything is tested.
 
-\+ TDDBetter indeed proves very useful for quicky verifying the normalization of all other variations. Also it makes all the tests that i wrote for those, obsolete...  
+\+ TDDClassic indeed proves very useful for quicky verifying the normalization of all other variations. Also it makes all the tests that i wrote for those, obsolete...  
 more code is ALWAYS a code smell. This applies to unit tests as well. And less code means you're on the right track!
 
 ### Observer pattern / Events / Binding / Reactive etc...
@@ -246,7 +249,7 @@ Anyway, here is the order in which i implemented these variations:
 
 2 Simple one
 
-3 TDD (**ELIMINATED** in V1 normalization)
+3 TDDMockist (**ELIMINATED** in V1 normalization)
 
 4 Data Driven Programming
 
@@ -254,7 +257,7 @@ Anyway, here is the order in which i implemented these variations:
 
 6 Clean architecture (but this is basically just a restructuring of the project + discovering that I almost did a perfect clean architecture without even realizing it)
 
-7 TDDBetter (TDD but writing tests for modules, not classes...)
+7 TDDClassic (TDD but writing tests for modules, not classes...)
 
 8 Events Variation (**ELIMINATED** in V1 normalization)
 
@@ -269,7 +272,7 @@ V2:
 
 2 Data driven Programming
 
-3 TDDBetter
+3 TDDClassic
 
 4 Simple one
 
@@ -281,4 +284,4 @@ V3 (not sure yet):
 
 3 Functional
 
-4 TDDBetter
+4 TDDClassic

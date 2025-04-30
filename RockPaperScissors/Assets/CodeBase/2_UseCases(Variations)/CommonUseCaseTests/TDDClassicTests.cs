@@ -5,7 +5,7 @@ using NUnit.Framework;
 using static RockPaperScissorsConsts;
 
 [TestFixture]
-public class TDDBetterTests
+public class TDDClassicTests
 {
     private MockPrinter mockPrinter;
     private MockRandom mockRandom;
@@ -42,7 +42,7 @@ public class TDDBetterTests
     [Test]
     public void TestTDDBetter()
     {
-        RunTests(x => new TDDBetter(x));
+        RunTests(x => new TDDClassic(x));
     }
 
     [Test]

@@ -1,5 +1,5 @@
 {
-    "name": "TDDBetterTests",
+    "name": "TDDClassicTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",

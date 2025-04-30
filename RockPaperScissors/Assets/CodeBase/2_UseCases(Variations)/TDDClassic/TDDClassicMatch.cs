@@ -1,16 +1,15 @@
 using static OutCome;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
-class TDDBetterMatch: PrinterUser
+class TDDClassicMatch: PrinterUser
 {
     internal int PlayerScore { get; private set; }
     internal int ComputerScore { get; private set; }
 
-    private TDDBetterRound gameRound;
+    private TDDClassicRound gameRound;
     
-    internal TDDBetterMatch(IPrinter printer): base(printer)
+    internal TDDClassicMatch(IPrinter printer): base(printer)
     {
-        gameRound = new TDDBetterRound(printer);
+        gameRound = new TDDClassicRound(printer);
     }
 
     internal OutCome EvaluatePlayerSign(Sign playerSign)

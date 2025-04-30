@@ -19,7 +19,7 @@ public enum VariationType
     HelloWorld,
     SimplestOne,
     TDD,
-    TDDBetter,
+    TDDClassic,
     EventsVariation,
     DataDrivenProgramming,
     Functional
